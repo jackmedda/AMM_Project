@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Creazione profilo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Giacomo Medda">
+        <meta name="keywords" content="nerd profilo nerdbook creare">
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+    </head>
+
+    <body>
+        <div>
+            <h1>Creazione profilo</h1>
+            <p>
+                Questa pagina ti permetter&agrave; di inserire i tuoi dati per la creazione
+                del profilo.
+            </p>
+            <h3>Inserimento dei dati</h3>
+        </div>
+        <div>
+            <form action="profilo.html" method="POST">
+                <label for="name">Nome</label>
+                <input type="text" name="name"
+                       id="name"/>
+                <label for="surname">Cognome</label>
+                <input type="text" name="surname"
+                       id="surname"/>
+                <label for="name">Url dell'immagine del profilo</label>
+                <input type="url" name="imgUrl"
+                       id="imgUrl"/>
+                <label for="present">Frase di presentazione</label>
+                <textarea rows="5" cols="20"
+                          name="present" id="present">
+                </textarea>
+                <label for="date">Data di nascita</label>
+                <input type="date" name="date"
+                       id="date" value="2000-01-01"/>
+                <label for="pswd">Password</label>
+                <input type="password" name="pswd"
+                       id="pswd"/>
+                <label for="verPswd">Conferma password</label>
+                <input type="password" name="verPswd"
+                       id="verPswd"/>
+            </form>
+        </div>
+        <div id="Collegamenti">
+            <h3>Collegamenti</h3>
+            <nav>
+                <a href="descrizione.html">Descrizione di Nerdbook</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </body>
+</html>

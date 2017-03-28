@@ -1,0 +1,22 @@
+body {
+    background-color: #140026;
+    color: white;
+    font-size: 14px;
+}
+
+h1, h2, h3 {
+    color: #bc0000;
+}
+
+.ProfileName {
+    color: grey;
+    font-size: 20px;
+}
+
+a:link {
+    color: #ffeb38;
+}
+
+a:visited {
+    color: lime;
+}
