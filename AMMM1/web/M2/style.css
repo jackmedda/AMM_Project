@@ -1,11 +1,67 @@
 body {
     background-color: #140026;
     color: white;
-    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    font-family: "franklin gothic", Arial, Times;
 }
 
-h1, h2, h3 {
+#Header {
+    display: inline-block;
+    width: 100%;
+    background-color: #f1fc28;
+}
+
+#Header h1, #Header h2 {
     color: #bc0000;
+}
+
+#Header #Menu {
+    display: inline-block;
+    float: left;
+}
+
+#Header #Menu h1 {
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 0;
+}
+
+#Header #Menu h2 {
+    display: inline-block;
+    margin: 0;
+    margin-left: -4px;
+    padding-top: 27px;
+    padding-bottom: 22px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+.NavHeader {
+    border: 1px solid black;
+}
+
+.RBorder {
+    border-right-width: 2px;
+}
+
+#LogoutBlock {
+    display: inline-block;
+    color: black;
+    float: right;
+    margin-top: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.Logout {
+    text-align: center;
+    line-height: 7px;
+}
+
+#BachContent h2 {
+    text-align: left;
+    margin-left: 20px;
 }
 
 .ProfileName {
@@ -14,9 +70,18 @@ h1, h2, h3 {
 }
 
 a:link {
-    color: #ffeb38;
+    color: blue;
 }
 
 a:visited {
-    color: lime;
+    color: #c11dd3;
+}
+
+a:hover {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+a:active {
+    font-style: italic;
 }
