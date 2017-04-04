@@ -7,13 +7,13 @@ body {
 }
 
 #Header {
-    display: inline-block;
+    position: fixed;
+    top: 0;
+    display: block;
     width: 100%;
     background-color: #f1fc28;
-}
-
-#Header h1, #Header h2 {
-    color: #bc0000;
+    margin-bottom: -3px;
+    z-index: 1;
 }
 
 #Header #Menu {
@@ -29,8 +29,7 @@ body {
 
 #Header #Menu h2 {
     display: inline-block;
-    margin: 0;
-    margin-left: -4px;
+    margin: 0 0 0 -4px;
     padding-top: 27px;
     padding-bottom: 22px;
     padding-right: 25px;
@@ -39,10 +38,16 @@ body {
 
 .NavHeader {
     border: 1px solid black;
+    color: #bc0000;
 }
 
 .RBorder {
     border-right-width: 2px;
+}
+
+#LayoutBach, #LayoutProf {
+    color: #f1fc28;
+    background-color: #bc0000;
 }
 
 #LogoutBlock {
@@ -50,36 +55,164 @@ body {
     color: black;
     float: right;
     margin-top: 1px;
+    margin-right: 4px;
     padding-left: 8px;
     padding-right: 8px;
 }
 
-.Logout {
+#LogoutBlock > p {
     text-align: center;
+    font-size: 14px;
     line-height: 7px;
+}
+
+#Line { 
+    background-color: #bc0000;
+    height: 2px;
+    margin-top: 78px;
+    width: 100%;
+}
+
+#Page {
+    margin-top: 0;
+    width: 100%;
+}
+
+#Sidebar {
+    float: left;
+    border: 6px double #f1fc28;
+    margin-top: 20px;
+    padding: 5px 30px 20px 0; 
+}
+
+#Sidebar h3 {
+    margin-left: 30px;
+}
+
+#Sidebar ul {
+    list-style-type: none;
+    display: block;
+}
+
+#Sidebar ul li {
+    list-style-type: none;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+#BachContent {
+    display: inline-block;
+    margin-left: 40px;
+    width: 60%;
 }
 
 #BachContent h2 {
     text-align: left;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
-.ProfileName {
+.Post {
+    display: block;
+    border: 1px dotted white;
+    padding-top: 8px;
+    padding-left: 8px;
+    width: 100%;
+    min-width: 440px;
+}
+
+.Post > p {
+    position: relative;
+    display: inline-block;
     color: grey;
-    font-size: 20px;
+    font-size: 16px;
+    margin-left: 6px;
+    bottom: 29px;
+}
+
+.Post > img {
+    height: 45px;
+    width: 60px;
+}
+
+.contentPost {
+    position: relative;
+    top: -30px;
+    left: 75px;
+}
+
+.contentPost * {
+    display: block;
+}
+
+.contentPost img {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    max-width: 300px;
+}
+
+#profImageBox {
+    position: relative;
+    display: inline-block;
+    top: 30px;
+    left: 20px;
+    padding: 30px 40px;
+    border: 2px dotted white;
+    font-size: 40px;
+    text-align: center;
+}
+
+#Page form {
+    position: relative;
+    display: inline-table;
+    bottom: 30px;
+    left: 30px;
+    width: 70%;
+}
+
+.row {
+    display: table-row;
+}
+
+#Page form label {
+    display: table-cell;
+    margin: 8px 10px;
+    width: 200px;
+}
+
+#Page form input, #Page form textarea {
+    margin: 8px 10px;
+    width: 90%;
+    min-width: 200px;
+}
+
+#label_ta {
+    position: relative;
+    bottom: 60px;
+}
+
+#Page form textarea {
+    resize: vertical;
+}
+
+#Page form button {
+    position: absolute;
+    display: block;
+    top: 310px;
+    left: 2px;
+    width: 94%;
 }
 
 a:link {
-    color: blue;
+    color: lightblue;
 }
 
 a:visited {
-    color: #c11dd3;
+    color: lightseagreen;
 }
 
-a:hover {
+#LogoutBlock a:hover, #Page a:hover {
     font-weight: bold;
-    font-size: 17px;
 }
 
 a:active {
