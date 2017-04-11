@@ -7,33 +7,28 @@ body {
 }
 
 #Header {
-    position: fixed;
+    position: relative;
     top: 0;
     display: block;
     width: 100%;
     background-color: #f1fc28;
-    margin-bottom: -3px;
     z-index: 1;
 }
-
-#Header #Menu {
-    display: inline-block;
-    float: left;
-}
-
+    
 #Header #Menu h1 {
-    display: inline-block;
-    padding: 20px 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     margin: 0;
 }
 
 #Header #Menu h2 {
-    display: inline-block;
     margin: 0 0 0 -4px;
     padding-top: 27px;
     padding-bottom: 22px;
-    padding-right: 25px;
-    padding-left: 25px;
+}
+
+#Header #Menu a:visited {
+    color: #f1fc28;
 }
 
 .NavHeader {
@@ -41,19 +36,8 @@ body {
     color: #bc0000;
 }
 
-.RBorder {
-    border-right-width: 2px;
-}
-
-#LayoutBach, #LayoutProf {
-    color: #f1fc28;
-    background-color: #bc0000;
-}
-
 #LogoutBlock {
-    display: inline-block;
     color: black;
-    float: right;
     margin-top: 1px;
     margin-right: 4px;
     padding-left: 8px;
@@ -69,8 +53,20 @@ body {
 #Line { 
     background-color: #bc0000;
     height: 2px;
-    margin-top: 78px;
     width: 100%;
+}
+
+#HeaderCurrentPage {
+    color: #f1fc28;
+    background-color: #bc0000;
+}
+
+#titleLogin {
+    position: absolute;
+    top: 0;
+    margin: 5px 10px;
+    font-size: 50px;
+    color: #bc0000;
 }
 
 #Page {
@@ -79,14 +75,7 @@ body {
 }
 
 #Sidebar {
-    float: left;
     border: 6px double #f1fc28;
-    margin-top: 20px;
-    padding: 5px 30px 20px 0; 
-}
-
-#Sidebar h3 {
-    margin-left: 30px;
 }
 
 #Sidebar ul {
@@ -100,12 +89,6 @@ body {
     margin-bottom: 4px;
 }
 
-#BachContent {
-    display: inline-block;
-    margin-left: 40px;
-    width: 60%;
-}
-
 #BachContent h2 {
     text-align: left;
     margin-left: 10px;
@@ -116,8 +99,10 @@ body {
     border: 1px dotted white;
     padding-top: 8px;
     padding-left: 8px;
-    width: 100%;
-    min-width: 440px;
+}
+
+.contentPost * {
+    display: block;
 }
 
 .Post > p {
@@ -137,11 +122,6 @@ body {
 .contentPost {
     position: relative;
     top: -30px;
-    left: 75px;
-}
-
-.contentPost * {
-    display: block;
 }
 
 .contentPost img {
@@ -152,38 +132,27 @@ body {
 }
 
 #profImageBox {
-    position: relative;
-    display: inline-block;
-    top: 30px;
-    left: 20px;
-    padding: 30px 40px;
     border: 2px dotted white;
     font-size: 40px;
     text-align: center;
-}
-
-#Page form {
-    position: relative;
-    display: inline-table;
-    bottom: 30px;
-    left: 30px;
-    width: 70%;
 }
 
 .row {
     display: table-row;
 }
 
-#Page form label {
+#Page #divForm label, #formLogin label{
     display: table-cell;
     margin: 8px 10px;
-    width: 200px;
 }
 
-#Page form input, #Page form textarea {
+#formLogin label {
+    font-size: 20px;
+}
+
+#Page #divForm input, #Page #divForm textarea, #formLogin input {
+    display: table-cell;
     margin: 8px 10px;
-    width: 90%;
-    min-width: 200px;
 }
 
 #label_ta {
@@ -191,16 +160,37 @@ body {
     bottom: 60px;
 }
 
-#Page form textarea {
+#Page #divForm textarea {
     resize: vertical;
 }
 
-#Page form button {
-    position: absolute;
+#formLogin {
+    background-color: #f1fc28;
+    color: #bc0000;
     display: block;
-    top: 310px;
-    left: 2px;
-    width: 94%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -200px;
+    height: 300px;
+}
+
+#formLogin h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+#formLogin button {
+    position: relative;
+    left: 50%;
+    top: 40px;
+    font-size: 24px;
+    padding: 5px 100px;
+}
+
+input[type=text]:focus, input[type=password]:focus,
+input[type=url]:focus, textarea:focus {
+    background-color: lightsteelblue;
 }
 
 a:link {
@@ -217,4 +207,349 @@ a:visited {
 
 a:active {
     font-style: italic;
+}
+
+@media only screen and (min-width: 1024px) {
+    #Header {
+        position: fixed;
+    }
+    
+    #Header #Menu {
+        display: inline-block;
+        float: left;
+    }
+    
+    #Header #Menu h1 {
+        display: inline-block;
+        padding-left: 30px;
+        padding-right: 30px;
+    }  
+    
+    #Header #Menu h2 {
+        display: inline-block;
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+    
+    #Header #Menu #UnderLineBackG {
+        display: inline-block;
+    }
+    
+    .RBorder {
+        border-right-width: 2px;
+    }
+    
+    #LogoutBlock {
+        display: inline-block;
+        float: right;
+    }
+
+    #Line { 
+        margin-top: 78px;
+    }
+    
+    #Sidebar {
+        float: left;
+        margin-top: 20px;
+        padding: 5px 30px 20px 0;
+    }
+
+    #Sidebar h3 {
+        margin-left: 30px;
+    }
+    
+    #BachContent {
+        display: inline-block;
+        margin-left: 40px;
+        width: 60%;
+    }
+
+    .Post {
+        width: 100%;
+    }
+    
+    .contentPost {
+        left: 75px;
+    }
+
+    #profImageBox {
+        position: relative;
+        display: inline-block;
+        float: left;
+        top: 20px;
+        left: 20px;
+        padding: 30px 40px;
+    }
+    
+    #Page #divForm {
+        position: relative;
+        display: inline-table;
+        top: 10px;
+        left: 30px;
+        width: 100%;
+    }
+    
+    #Page form {
+        display: inline;
+        float: left;
+        width: 70%;
+    }
+    
+    #Page #divForm label, #formLogin label{
+        width: 200px;
+    }
+    
+    #formLogin label {
+        padding-left: 117px;
+    }
+    
+    #Page #divForm input, #Page #divForm textarea, #formLogin input {
+        width: 84%;
+    }
+    
+    #Page form button {
+        width: 89%;
+        min-width: 650px;
+        position: relative;
+        top: 10px;
+        left: 30px;
+        display: block;
+    }
+    
+    #formLogin {
+        margin-left: -300px;
+        width: 600px;
+    }
+    
+    #formLogin button {
+        margin-left: -131px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1024px) {
+    #Header {
+        position: fixed;
+    }
+    
+    #Header #Menu {
+        display: inline-block;
+        float: left;
+    }
+    
+    #Header #Menu h1 {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }   
+    
+    #Header #Menu h2 {
+        display: inline-block;
+        margin: 0 0 0 -4px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    
+    #Header #Menu #UnderLineBackG {
+        display: inline-block;
+    }
+
+    .RBorder {
+        border-right-width: 2px;
+    }
+    
+    #LogoutBlock {
+        display: inline-block;
+        float: right;
+    }
+    
+    #Line { 
+        margin-top: 78px;
+    }
+    
+    #Sidebar {
+        float: left;
+        margin-top: 20px;
+        padding: 5px 10px 5px 0;
+    }
+    
+    #Sidebar h3 {
+        margin-left: 15px;
+    }
+    
+    #Sidebar ul li {
+        margin-left: -15px;
+    }
+    
+    #BachContent {
+        display: inline-block;
+        width: 70%;
+        margin-left: 5px;
+    }
+    
+    .Post {
+        min-width: 325px;
+    }
+    
+    .contentPost {
+        left: 20px;
+    }
+    
+    #profImageBox {
+        position: relative;
+        display: inline-block;
+        float: left;
+        top: 20px;
+        left: 10px;
+        padding: 30px 40px;
+    }
+    
+    #Page #divForm {
+        position: relative;
+        display: inline-table;
+        top: 140px;
+        left: -100px;
+        width: 35%;
+    }
+    
+    #Page #divForm label {
+        min-width: 10px;
+        font-size: 13px;
+    }
+    
+    #Page #divForm input, #Page #divForm textarea, #formLogin input {
+        width: 100%;
+        min-width: 20px;
+    }
+    
+    #Page form button {
+        display: block;
+        position: relative;
+        top: 140px;
+        left: 130px;
+        width: 36%;
+        min-width: 260px;
+        margin: 0;
+    }
+    
+    #formLogin {
+        margin-left: -150px;
+        width: 400px;
+    }
+    
+    #formLogin label {
+        padding-left: 50px;
+    }
+    
+    #formLogin button {
+        margin-left: -131px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #Header {
+        position: relative;
+        top: -15px;
+        height: 285px;
+    }
+    
+    #Header #Menu {
+        position: relative;
+        display: block;
+        top: 10px;
+        width: 100%;
+    }
+    
+    #Header #Menu h1, #Header #Menu h2 {
+        display: block;
+        text-align: center;
+    }
+    
+    #Header #Menu #UnderLineBackG a:visited {
+        color: #bc0000;
+    }
+    
+    #LogoutBlock {
+        position: relative;
+        display: block;
+        top: 10px;
+    }
+    
+    #Line {
+        display: none;
+    }
+    
+    #Sidebar {
+        display: block;
+        position: relative;
+        padding: 5px 10px 5px 0;
+    }
+    
+    #Sidebar h3 {
+        margin-left: 15px;
+    }
+    
+    #Sidebar ul li {
+        margin-left: -15px;
+    }
+    
+    #BachContent {
+        position: relative;
+        display: block;
+        width: 98%;
+        margin-left: 5px;
+    }
+    
+    .Post {
+        min-width: 360px;
+    }
+    
+    .contentPost {
+        left: 20px;
+    }
+    
+    #profImageBox {
+        position: relative;
+        display: block;
+        left: 40%;
+        width: 110px;
+        padding: 32px 0;
+        margin: 5px 0;
+    }
+    
+    #Page form {
+        margin-bottom: 20px;
+    }
+    
+    #Page #divForm {
+        display: table;
+        margin-left: 20px;
+    }
+    
+    #Page #divForm label {
+        width: 200px;
+    }
+    
+    #Page #divForm input, #Page #divForm textarea, #formLogin input {
+        width: 200px;
+    }
+    
+    #Page form button {
+        display: block;
+        width: 415px;
+        margin-left: 20px;
+    }
+    
+    #formLogin {
+        left: 0%;
+        margin-left: 40px;
+        width: 350px;
+    }
+    
+    #formLogin label {
+        padding-left: 25px;
+    }
+    
+    #formLogin button {
+        margin-left: -131px;
+    }
 }

@@ -23,7 +23,10 @@
             
             <div id="Menu">
                 <a href="descrizione.html"><h1 class="NavHeader">Nerdbook</h1></a>
-                <a href="profilo.html"><h2 id="LayoutProf" class="NavHeader">Profilo</h2></a>
+                <div id="UnderLineBackG">
+                    <a href="profilo.html"><h2 id="HeaderCurrentPage" 
+                                                               class="NavHeader">Profilo</h2></a>
+                </div>
                 <a href="bacheca.html"><h2 class="NavHeader RBorder">Bacheca</h2></a>
             </div>
         </div>
@@ -47,41 +50,42 @@
             
             <div id="profImageBox">+</div>
             <form action="profilo.html" method="POST">
-                <div class="row">
-                    <label for="name">Nome</label>
-                    <input type="text" name="name"
-                           id="name"/>
-                </div>
-                <div class="row">
-                    <label for="surname">Cognome</label>
-                    <input type="text" name="surname"
-                           id="surname"/>
-                </div>
-                <div class="row">
-                    <label for="name">Url dell'immagine del profilo</label>
-                    <input type="url" name="imgUrl"
-                           id="imgUrl"/>
-                </div>
-                <div class="row">
-                    <label for="present" id="label_ta">Frase di presentazione</label>
-                    <textarea rows="4" cols="10"
-                              name="present" id="present">
-                    </textarea>
-                </div>
-                <div class="row">
-                    <label for="date">Data di nascita</label>
-                    <input type="date" name="date"
-                           id="date" value="2000-01-01"/>
-                </div>
-                <div class="row">
-                    <label for="pswd">Password</label>
-                    <input type="password" name="pswd"
-                           id="pswd"/>
-                </div>
-                <div class="row">
-                    <label for="verPswd">Conferma password</label>
-                    <input type="password" name="verPswd"
-                           id="verPswd"/>
+                <div id="divForm">
+                    <div class="row">
+                        <label for="name">Nome</label>
+                        <input type="text" name="name"
+                               id="name"/>
+                    </div>
+                    <div class="row">
+                        <label for="surname">Cognome</label>
+                        <input type="text" name="surname"
+                               id="surname"/>
+                    </div>
+                    <div class="row">
+                        <label for="name">Url dell'immagine del profilo</label>
+                        <input type="url" name="imgUrl"
+                               id="imgUrl"/>
+                    </div>
+                    <div class="row">
+                        <label for="present" id="label_ta">Frase di presentazione</label>
+                        <textarea rows="4" cols="10"
+                                  name="present" id="present"></textarea>
+                    </div>
+                    <div class="row">
+                        <label for="date">Data di nascita</label>
+                        <input type="date" name="date"
+                               id="date" value="2000-01-01"/>
+                    </div>
+                    <div class="row">
+                        <label for="pswd">Password</label>
+                        <input type="password" name="pswd"
+                               id="pswd"/>
+                    </div>
+                    <div class="row">
+                        <label for="verPswd">Conferma password</label>
+                        <input type="password" name="verPswd"
+                               id="verPswd"/>
+                    </div>
                 </div>
                 <button type="submit">Aggiorna</button>
             </form>
