@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
             String password = request.getParameter("password");
         
             if (username != null &&
-                password != null) 
+                password != null)
             {
                 int loggedUserID = UserFactory.getInstance().getIdByUserAndPassword(username, password);
                 
@@ -63,7 +63,7 @@ public class Login extends HttpServlet {
                     session.setAttribute("loggedUserID", loggedUserID);
                     
                     if(loggedUserID == 10)
-                        request.getRequestDispatcher("profilo.html").forward(request, response);
+                        request.getRequestDispatcher("Profilo").forward(request, response);
                     else
                         request.getRequestDispatcher("Bacheca").forward(request, response);
                     return;
@@ -76,7 +76,7 @@ public class Login extends HttpServlet {
             }
         }
         
-        request.getRequestDispatcher("loginForm.jsp").forward(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

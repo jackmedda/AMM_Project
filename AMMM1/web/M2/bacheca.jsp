@@ -27,12 +27,12 @@
                 <c:forEach var="post" items="${posts}">
                     <div class="Post">
                         <img title="imgProfilo" alt="Foto Profilo"
-                         src="${user.urlProfImage}" width="100" height="80">
-                        <p>${user.nome} ${user.cognome}</p>
+                         src="${utente.profImagePath}" width="100" height="80">
+                        <p>${utente.name} ${utente.surname}</p>
                         <div class="contentPost">
                             <p>${post.content}</p>
-                            <c:if test="${post.imagePath != null}">
-                                <img alt="Post con foto" src="${post.imagePath}">
+                            <c:if test="${post.postType == IMAGE}">
+                                <img alt="Post con foto" src="${post.postContent}">
                             </c:if>
                         </div>
                     </div>

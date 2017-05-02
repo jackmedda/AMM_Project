@@ -9,10 +9,10 @@
 <header>
     <div id="LogoutBlock">
         <p>
-            ${user.nome} ${user.cognome}
+            ${utente.name} ${utente.surname}
         </p>
         <p>
-            <a href="login.html">Logout</a>
+            <a href="Login?logout=1">Logout</a>
         </p>
     </div>
 </header>

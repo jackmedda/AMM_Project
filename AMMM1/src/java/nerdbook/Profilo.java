@@ -6,11 +6,14 @@
 package nerdbook;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nerdbook.classi.Group;
+import nerdbook.classi.GroupFactory;
 import nerdbook.classi.User;
 import nerdbook.classi.UserFactory;
 
@@ -41,6 +44,7 @@ public class Profilo extends HttpServlet {
            session.getAttribute("loggedIn").equals(true)){
             
             String user = request.getParameter("user");
+            boolean submittedButton = request.getParameter("submit") != null;
             
             int userID;
 
@@ -55,9 +59,19 @@ public class Profilo extends HttpServlet {
             User utente = UserFactory.getInstance().getUserById(userID);
             if(utente != null){
                 request.setAttribute("utente", utente);
+                
+                List<User> friends = UserFactory.getInstance().getUserFriends(utente);
+                request.setAttribute("friends", friends);
+                
+                List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
+                request.setAttribute("groups", groups);
+                
+                if(submittedButton == true)
+                    request.setAttribute("confirmed", true);
 
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
-            } 
+                return;
+            }
             else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }

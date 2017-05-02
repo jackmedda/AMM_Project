@@ -35,14 +35,16 @@ public class PostFactory {
         post1.setId(0);
         post1.setUser(userFactory.getUserById(0));
         post1.setGroup(groupFactory.getGroupsById(-1));
-        post1.setSharer(post1.getUser().getId() == -1 ? post1.getUser() : post1.getGroup());
+        post1.setSharer(post1.getUser().getId() != -1 ? post1.getUser() : post1.getGroup());
+        post1.setPostType(Post.Type.TEXT);
+        post1.setPostContent("");
         
         Post post2 = new Post();
         post2.setContent("Cassato!!!");
         post2.setId(1);
         post2.setUser(userFactory.getUserById(-1));
         post2.setGroup(groupFactory.getGroupsById(0));
-        post2.setSharer(post2.getUser().getId() == -1 ? post2.getUser() : post2.getGroup());
+        post2.setSharer(post2.getUser() != null ? post2.getUser() : post2.getGroup());
         post2.setPostType(Post.Type.IMAGE);
         post2.setPostContent("images/cookieMonster.gif");
 
@@ -51,23 +53,27 @@ public class PostFactory {
         post3.setId(2);
         post3.setUser(userFactory.getUserById(2));
         post3.setGroup(groupFactory.getGroupsById(-1));
-        post3.setSharer(post3.getUser().getId() == -1 ? post3.getUser() : post3.getGroup());
+        post3.setSharer(post3.getUser() != null ? post3.getUser() : post3.getGroup());
         post3.setPostType(Post.Type.TEXT);
         post3.setPostContent("https://www.youtube.com/watch?v=FWHneYtED8I");
 
         Post post4 = new Post();
         post4.setContent("I need ansioliticy");
         post4.setId(3);
-        post4.setUser(userFactory.getUserById(-1));
+        post4.setUser(userFactory.getUserById(1));
         post4.setGroup(groupFactory.getGroupsById(2));
-        post4.setSharer(post4.getUser().getId() == -1 ? post4.getUser() : post4.getGroup());
+        post4.setSharer(post4.getUser() != null ? post4.getUser() : post4.getGroup());
+        post4.setPostType(Post.Type.TEXT);
+        post4.setPostContent("");
 
         Post post5 = new Post();
         post5.setContent("");
         post5.setId(4);
         post5.setUser(userFactory.getUserById(3));
         post5.setGroup(groupFactory.getGroupsById(-1));
-        post5.setSharer(post5.getUser().getId() == -1 ? post5.getUser() : post5.getGroup());
+        post5.setSharer(post5.getUser() != null ? post5.getUser() : post5.getGroup());
+        post5.setPostType(Post.Type.TEXT);
+        post5.setPostContent("");
 
         listaPost.add(post1);
         listaPost.add(post2);
@@ -90,7 +96,7 @@ public class PostFactory {
         List<Post> listaPosts = new ArrayList<>();
 
         for (Post post : this.listaPost) {
-            if (post.getUser().equals(usr)) {
+            if (post.getUser() != null && post.getUser().equals(usr)) {
                 listaPosts.add(post);
             }
         }

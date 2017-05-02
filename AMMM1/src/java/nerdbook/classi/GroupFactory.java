@@ -34,7 +34,7 @@ public class GroupFactory {
         groups1.setUser(userFactory.getUserById(0));
         groups1.setUser(userFactory.getUserById(1));
         groups1.setUser(userFactory.getUserById(3));
-        groups1.setGroup(new PairGroup("FuoriCorso",""));
+        groups1.setGroup(new PairGroup("Fuori Corso",""));
 
         Group groups2 = new Group();
         groups2.setId(1);

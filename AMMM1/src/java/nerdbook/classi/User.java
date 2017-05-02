@@ -16,7 +16,7 @@ public class User {
     private String name;
     private String surname;
     private Date date;
-    private String urlProfImage;
+    private String profImagePath;
     private String presentation;
     private String username;
     private String password;
@@ -26,7 +26,7 @@ public class User {
         this.name = null;
         this.surname = null;
         this.date = null;
-        this.urlProfImage = null;
+        this.profImagePath = null;
         this.presentation = null;
         this.username = null;
         this.password = null;
@@ -89,17 +89,17 @@ public class User {
     }
 
     /**
-     * @return the urlProfImage
+     * @return the profImagePath
      */
-    public String getUrlProfImage() {
-        return urlProfImage;
+    public String getProfImagePath() {
+        return profImagePath;
     }
 
     /**
-     * @param urlProfImage the urlProfImage to set
+     * @param profImagePath the profImagePath to set
      */
-    public void setUrlProfImage(String urlProfImage) {
-        this.urlProfImage = urlProfImage;
+    public void setProfImagePath(String profImagePath) {
+        this.profImagePath = profImagePath;
     }
 
     /**

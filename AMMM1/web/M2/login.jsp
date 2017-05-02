@@ -23,12 +23,12 @@
             
             <form action="Login" method="POST">
                 <div class="row">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username"/>
+                    <label for="userName">Username</label>
+                    <input type="text" name="username" id="userName"/>
                 </div>
                 <div class="row">
-                    <label for="passw">Password</label>
-                    <input type="password" name="passw" id="passw"/>
+                    <label for="passWord">Password</label>
+                    <input type="password" name="password" id="passWord"/>
                 </div>
                 <button type="submit">Login</button>
             </form>

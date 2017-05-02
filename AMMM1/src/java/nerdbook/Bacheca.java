@@ -58,6 +58,12 @@ public class Bacheca extends HttpServlet {
 
                 List<Post> posts = PostFactory.getInstance().getPostList(utente);
                 request.setAttribute("posts", posts);
+                
+                List<User> friends = UserFactory.getInstance().getUserFriends(utente);
+                request.setAttribute("friends", friends);
+                
+                List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
+                request.setAttribute("groups", groups);
 
                 request.getRequestDispatcher("bacheca.jsp").forward(request, response);
             } 
