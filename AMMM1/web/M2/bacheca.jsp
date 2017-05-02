@@ -20,21 +20,7 @@
         </div>
         
         <div id="Page">
-            <div id="Line"></div>
-            <div id="Sidebar">
-                <h3>Persone</h3>
-                <ul>
-                    <li>Pinco Pallino</li>
-                    <li>Riccardo Rossi</li>
-                    <li>Mario Bianchi</li>
-                </ul>
-
-                <h3>Gruppi</h3>
-                <ul>
-                    <li>Mongolfieristi</li>
-                    <li>Ritardatari</li>
-                </ul>
-            </div>
+            <jsp:include page="sidebar.jsp"/>
 
             <div id="BachContent">
                 <h2>Post condivisi</h2>
@@ -50,10 +36,21 @@
                         </p>  
                     </div>
                 </div>
-                <div class="Post">
-                    <img title="imgProfilo" alt="Foto Profilo"
+                <c:forEach var="post" items="${posts}">
+                    <div class="Post">
+                        <img title="imgProfilo" alt="Foto Profilo"
                          src="images/cookieMonsterProf.jpg" width="100" height="80">
-                    <p>Cookie Monster</p>
+                        <p>${user.nome} ${user.cognome}</p>
+                        <div class="contentPost">
+                            <p>${post.content}</p>
+                            <c:if test="${post.imagePresent == true}">
+                                <img alt="Post con foto" src="${post.imagePath}">
+                            </c:if>
+                        </div>
+                    </div>
+                </c:forEach>
+                <div class="Post">
+                    
 
                     <div class="contentPost">    
                         <p>

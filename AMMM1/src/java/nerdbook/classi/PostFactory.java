@@ -35,16 +35,18 @@ public class PostFactory {
         post1.setUser(userFactory.getUserById(0));
 
         Post post2 = new Post();
-        post2.setContent("img/djanni1.jpg");
+        post2.setContent("");
         post2.setId(1);
         post2.setUser(userFactory.getUserById(0));
-        post2.setPostType(Post.Type.IMAGE);
+        post2.setImagePresent(true);
+        post2.setImagePath("img/djanni1.jpg");
 
         Post post3 = new Post();
-        post3.setContent("img/djanni2.jpg");
+        post3.setContent("");
         post3.setId(2);
         post3.setUser(userFactory.getUserById(0));
-        post3.setPostType(Post.Type.IMAGE);
+        post3.setImagePresent(true);
+        post3.setImagePath("img/djanni2.jpg");
 
         Post post4 = new Post();
         post4.setContent("I need ansioliticy");
@@ -52,10 +54,11 @@ public class PostFactory {
         post4.setUser(userFactory.getUserById(1));
 
         Post post5 = new Post();
-        post5.setContent("https://68.media.tumblr.com/51942e1f788f7209ee0f6db7cfc5e0fb/tumblr_n37ycpbMZf1rkxod7o1_500.jpg");
+        post5.setContent("");
         post5.setId(4);
         post5.setUser(userFactory.getUserById(1));
-        post5.setPostType(Post.Type.IMAGE);
+        post5.setImagePresent(true);
+        post5.setImagePath("https://68.media.tumblr.com/51942e1f788f7209ee0f6db7cfc5e0fb/tumblr_n37ycpbMZf1rkxod7o1_500.jpg");
 
         listaPost.add(post1);
         listaPost.add(post2);

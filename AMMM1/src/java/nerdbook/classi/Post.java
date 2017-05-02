@@ -10,21 +10,18 @@ package nerdbook.classi;
  * @author Giacomo
  */
 public class Post {
-    
-    public enum Type {
-        TEXT, IMAGE
-    };
 
     private int id;
     private User user;
     private String content;
-    private Type postType;
+    private boolean imagePresent;
+    private String imagePath;
 
     public Post() {
         this.id = 0;
         this.user = null;
         this.content = "";
-        this.postType = Type.TEXT;
+        this.imagePresent = false;
     }
 
     /**
@@ -70,16 +67,30 @@ public class Post {
     }
 
     /**
-     * @return the postType
+     * @return the imagePresent
      */
-    public Type getPostType() {
-        return postType;
+    public boolean isImagePresent() {
+        return imagePresent;
     }
 
     /**
-     * @param postType the postType to set
+     * @param imagePresent the imagePresent to set
      */
-    public void setPostType(Type postType) {
-        this.postType = postType;
+    public void setImagePresent(boolean imagePresent) {
+        this.imagePresent = imagePresent;
+    }
+
+    /**
+     * @return the imagePath
+     */
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    /**
+     * @param imagePath the imagePath to set
+     */
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
