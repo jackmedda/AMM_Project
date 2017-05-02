@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -12,23 +14,9 @@
 
     <body>
         <div id="Header">
-            <div id="LogoutBlock">
-                <p>
-                    Giacomo Medda
-                </p>
-                <p>
-                    <a href="login.html">Logout</a>
-                </p>
-            </div>
-            
-            <div id="Menu">
-                <a href="descrizione.html"><h1 class="NavHeader">Nerdbook</h1></a>
-                <a href="profilo.html"><h2 class="NavHeader">Profilo</h2></a>
-                <div id="UnderLineBackG">
-                    <a href="bacheca.html"><h2 id="HeaderCurrentPage" 
-                                               class="NavHeader RBorder">Bacheca</h2></a>
-                </div>
-            </div>
+            <jsp:include page="header.jsp"/>
+            <c:set var="page" value="bacheca" scope="request"/>
+            <jsp:include page="nav.jsp"/>
         </div>
         
         <div id="Page">

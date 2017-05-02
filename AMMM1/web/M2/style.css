@@ -56,7 +56,7 @@ body {
     width: 100%;
 }
 
-#HeaderCurrentPage {
+.HeaderCurrentPage {
     color: #f1fc28;
     background-color: #bc0000;
 }
@@ -231,7 +231,7 @@ a:active {
         padding-left: 25px;
     }
     
-    #Header #Menu #UnderLineBackG {
+    #Header #Menu .UnderLineBackG {
         display: inline-block;
     }
     
@@ -349,7 +349,7 @@ a:active {
         padding-left: 5px;
     }
     
-    #Header #Menu #UnderLineBackG {
+    #Header #Menu .UnderLineBackG {
         display: inline-block;
     }
 
@@ -464,7 +464,7 @@ a:active {
         text-align: center;
     }
     
-    #Header #Menu #UnderLineBackG a:visited {
+    #Header #Menu .UnderLineBackG a:visited {
         color: #bc0000;
     }
     
