@@ -11,17 +11,26 @@ package nerdbook.classi;
  */
 public class Post {
 
+    public enum Type {
+        TEXT, IMAGE
+    };
+
     private int id;
     private User user;
+    private Group group;
+    private Object sharer;
     private String content;
-    private boolean imagePresent;
-    private String imagePath;
+    private Type postType;
+    private String postContent;
 
     public Post() {
-        this.id = 0;
+        this.id = -1;
         this.user = null;
-        this.content = "";
-        this.imagePresent = false;
+        this.group = null;
+        this.sharer = null;
+        this.content = null;
+        this.postType = null;
+        this.postContent = null;
     }
 
     /**
@@ -53,6 +62,34 @@ public class Post {
     }
 
     /**
+     * @return the group
+     */
+    public Group getGroup() {
+        return group;
+    }
+
+    /**
+     * @param group the group to set
+     */
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    /**
+     * @return the sharer
+     */
+    public Object getSharer() {
+        return sharer;
+    }
+
+    /**
+     * @param sharer the sharer to set
+     */
+    public void setSharer(Object sharer) {
+        this.sharer = sharer;
+    }
+
+    /**
      * @return the content
      */
     public String getContent() {
@@ -67,30 +104,30 @@ public class Post {
     }
 
     /**
-     * @return the imagePresent
+     * @return the postType
      */
-    public boolean isImagePresent() {
-        return imagePresent;
+    public Type getPostType() {
+        return postType;
     }
 
     /**
-     * @param imagePresent the imagePresent to set
+     * @param postType the postType to set
      */
-    public void setImagePresent(boolean imagePresent) {
-        this.imagePresent = imagePresent;
+    public void setPostType(Type postType) {
+        this.postType = postType;
     }
 
     /**
-     * @return the imagePath
+     * @return the postContent
      */
-    public String getImagePath() {
-        return imagePath;
+    public String getPostContent() {
+        return postContent;
     }
 
     /**
-     * @param imagePath the imagePath to set
+     * @param postContent the postContent to set
      */
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
     }
 }

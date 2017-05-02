@@ -5,19 +5,20 @@
  */
 package nerdbook;
 
-import nerdbook.classi.UserFactory;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nerdbook.classi.User;
+import nerdbook.classi.UserFactory;
 
 /**
  *
  * @author Giacomo
  */
-public class Login extends HttpServlet {
+public class Profilo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,50 +34,40 @@ public class Login extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         
-        if(request.getParameter("logout")!=null)
-        {
-            session.invalidate();
+        if(session != null && 
+           session.getAttribute("loggedIn")!= null &&
+           session.getAttribute("loggedIn").equals(true)){
+            
+            String user = request.getParameter("user");
+            
+            int userID;
+
+            if(user != null){
+                userID = Integer.parseInt(user);
+            } 
+            else {
+                Integer loggedUserID = (Integer)session.getAttribute("loggedUserID");
+                userID = loggedUserID;
+            }
+            
+            User utente = UserFactory.getInstance().getUserById(userID);
+            if(utente != null){
+                request.setAttribute("utente", utente);
+
+                request.getRequestDispatcher("profilo.jsp").forward(request, response);
+            } 
+            else {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+        }
+        else {
+            request.setAttribute("notLoggedIn", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
         
-        if (session.getAttribute("loggedIn") != null &&
-            session.getAttribute("loggedIn").equals(true)) {
-
-            request.getRequestDispatcher("Bacheca").forward(request, response);
-            return;
-        } 
-        else {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-        
-            if (username != null &&
-                password != null) 
-            {
-                int loggedUserID = UserFactory.getInstance().getIdByUserAndPassword(username, password);
-                
-                if(loggedUserID!=-1)
-                {
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("loggedUserID", loggedUserID);
-                    
-                    if(loggedUserID == 10)
-                        request.getRequestDispatcher("profilo.html").forward(request, response);
-                    else
-                        request.getRequestDispatcher("Bacheca").forward(request, response);
-                    return;
-                } 
-                else {
-                    request.setAttribute("invalidData", true);
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                    return;
-                } 
-            }
-        }
-        
-        request.getRequestDispatcher("loginForm.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

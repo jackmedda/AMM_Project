@@ -23,7 +23,7 @@ public class GroupFactory {
         return singleton;
     }
 
-    private List<Group> listAllGroups = new ArrayList<>();
+    private List<Group> listGroups = new ArrayList<>();
 
     private GroupFactory() {
         
@@ -57,14 +57,14 @@ public class GroupFactory {
         groups4.setUser(userFactory.getUserById(3));
         groups4.setGroup(new PairGroup("Gureu",""));
 
-        listAllGroups.add(groups1);
-        listAllGroups.add(groups2);
-        listAllGroups.add(groups3);
-        listAllGroups.add(groups4);
+        listGroups.add(groups1);
+        listGroups.add(groups2);
+        listGroups.add(groups3);
+        listGroups.add(groups4);
     }
 
     public Group getGroupsById(int id) {
-        for (Group groups : this.listAllGroups) {
+        for (Group groups : this.listGroups) {
             if (groups.getId() == id) {
                 return groups;
             }
@@ -76,7 +76,7 @@ public class GroupFactory {
 
         List<Group> listGroups = new ArrayList<>();
 
-        for (Group group : this.listAllGroups) {
+        for (Group group : this.listGroups) {
             if (group.getUserList().contains(usr)) {
                 listGroups.add(group);
             }

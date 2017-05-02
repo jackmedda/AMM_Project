@@ -17,15 +17,19 @@ public class User {
     private String surname;
     private Date date;
     private String urlProfImage;
+    private String presentation;
+    private String username;
     private String password;
     
     public User () {
-        this.id = 0;
-        this.name = "";
-        this.surname = "";
+        this.id = -1;
+        this.name = null;
+        this.surname = null;
         this.date = null;
-        this.urlProfImage = "";
-        this.password = "";
+        this.urlProfImage = null;
+        this.presentation = null;
+        this.username = null;
+        this.password = null;
     }
     
     /**
@@ -96,6 +100,34 @@ public class User {
      */
     public void setUrlProfImage(String urlProfImage) {
         this.urlProfImage = urlProfImage;
+    }
+
+    /**
+     * @return the presentation
+     */
+    public String getPresentation() {
+        return presentation;
+    }
+
+    /**
+     * @param presentation the presentation to set
+     */
+    public void setPresentation(String presentation) {
+        this.presentation = presentation;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**

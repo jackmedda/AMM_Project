@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -14,16 +16,19 @@
         <h1 id="titleLogin">Nerdbook</h1>
         <div id="formLogin">
             <h2>Accedi</h2>
-            <form action="profilo.html" method="POST">
+            
+            <c:if test="${invalidData == true}">
+                <div id="invalidDataWarning">I dati inseriti non sono corretti</div>
+            </c:if>
+            
+            <form action="Login" method="POST">
                 <div class="row">
                     <label for="username">Username</label>
-                    <input type="text" name="username"
-                           id="username" value="Inserire qui l'username..."/>
+                    <input type="text" name="username" id="username"/>
                 </div>
                 <div class="row">
                     <label for="passw">Password</label>
-                    <input type="password" name="passw"
-                           id="passw"/>
+                    <input type="password" name="passw" id="passw"/>
                 </div>
                 <button type="submit">Login</button>
             </form>

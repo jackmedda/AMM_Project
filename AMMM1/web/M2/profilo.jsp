@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
@@ -12,59 +14,42 @@
 
     <body>
         <div id="Header">
-            <div id="LogoutBlock">
-                <p>
-                    Giacomo Medda
-                </p>
-                <p>
-                    <a href="login.html">Logout</a>
-                </p>
-            </div>
-            
-            <div id="Menu">
-                <a href="descrizione.html"><h1 class="NavHeader">Nerdbook</h1></a>
-                <div id="UnderLineBackG">
-                    <a href="profilo.html"><h2 id="HeaderCurrentPage" 
-                                                               class="NavHeader">Profilo</h2></a>
-                </div>
-                <a href="bacheca.jsp"><h2 class="NavHeader RBorder">Bacheca</h2></a>
-            </div>
+            <jsp:include page="header.jsp"/>
+            <c:set var="page" value="bacheca" scope="request"/>
+            <jsp:include page="nav.jsp"/>
         </div>
         
         <div id="Page">
-            <div id="Line"></div>
-            <div id="Sidebar">
-                <h3>Persone</h3>
-                <ul>
-                    <li>Pinco Pallino</li>
-                    <li>Riccardo Rossi</li>
-                    <li>Mario Bianchi</li>
-                </ul>
-
-                <h3>Gruppi</h3>
-                <ul>
-                    <li>Mongolfieristi</li>
-                    <li>Ritardatari</li>
-                </ul>
-            </div>
+            <jsp:include page="sidebar.jsp"/>
             
-            <div id="profImageBox">+</div>
+            <div id="profImageBox">
+                <c:choose>
+                    <c:when test="${user.urlImagePath == null}">
+                        +
+                    </c:when>
+                    <c:otherwise>
+                        <img alt="Foto Profilo" src="${user.urlProfImage}">
+                    </c:otherwise>
+                </c:choose>
+            </div>
+
             <form action="profilo.html" method="POST">
                 <div id="divForm">
                     <div class="row">
                         <label for="name">Nome</label>
-                        <input type="text" name="name"
-                               id="name"/>
+                        <input type="text" name="name" id="name"
+                               <c:if test="${user.name != null}">value="${user.name}"</c:if>/>
                     </div>
                     <div class="row">
                         <label for="surname">Cognome</label>
-                        <input type="text" name="surname"
-                               id="surname"/>
+                        <input type="text" name="surname" id="surname"
+                               <c:if test="${user.surname != null}">value="${user.surname}"</c:if>/>
                     </div>
                     <div class="row">
                         <label for="name">Url dell'immagine del profilo</label>
-                        <input type="url" name="imgUrl"
-                               id="imgUrl"/>
+                        <input type="url" name="imgUrl" id="imgUrl"
+                               <c:if test="${user.urlProfImage != null}">value="${user.urlProfImage}"
+                               </c:if> />                       
                     </div>
                     <div class="row">
                         <label for="present" id="label_ta">Frase di presentazione</label>
@@ -73,8 +58,7 @@
                     </div>
                     <div class="row">
                         <label for="date">Data di nascita</label>
-                        <input type="date" name="date"
-                               id="date" value="2000-01-01"/>
+                        <input type="date" name="date" id="date" value="2000-01-01"/>
                     </div>
                     <div class="row">
                         <label for="pswd">Password</label>

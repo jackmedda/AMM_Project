@@ -65,6 +65,11 @@ public class Bacheca extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
         }
+        else {
+            request.setAttribute("notLoggedIn", true);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

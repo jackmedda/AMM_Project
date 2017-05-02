@@ -26,26 +26,34 @@ public class UserFactory {
     private List<User> listaUtenti = new ArrayList<>();
 
     private UserFactory() {
+        
+        User user0 = new User();
+        user0.setId(10);
+        user0.setName(null);
+        user0.setSurname(null);
+        user0.setDate("Incrocio");
+        user0.setPassword("123");
+        user0.setUrlProfImage("img/djanniprofilo.jpg");
 
         User user1 = new User();
         user1.setId(0);
-        user1.setName("Djanni");
-        user1.setSurname("djannigatto@gmail.com");
-        user1.setDate("Incrocio");
-        user1.setPassword("123");
+        user1.setName("Jack");
+        user1.setSurname("Medda");
+        user1.setDate("1996-03-20");
+        user1.setPassword("123789");
         user1.setUrlProfImage("img/djanniprofilo.jpg");
 
         User user2 = new User();
         user2.setId(1);
-        user2.setName("HeavyBreathing");
-        user2.setSurname("cholansia@gmail.com");
-        user2.setDate("British Shorthair");
-        user2.setPassword("123");
+        user2.setName("Cookie");
+        user2.setSurname("Monster");
+        user2.setDate("1666-08-22");
+        user2.setPassword("qwerty");
         user2.setUrlProfImage("img/user1.gif");
 
         User user3 = new User();
         user3.setId(2);
-        user3.setName("GymWorkOut");
+        user3.setName("Gym");
         user3.setSurname("doIt@gmail.com");
         user3.setDate("User Sacro di Birmania");
         user3.setPassword("123");

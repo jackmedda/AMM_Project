@@ -19,7 +19,7 @@ public class Group {
     private PairGroup group;
     
     public Group () {
-        this.id = 0;
+        this.id = -1;
         this.userList = new ArrayList<>();
         this.group =  null;
     }
