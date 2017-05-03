@@ -44,7 +44,6 @@ public class Profilo extends HttpServlet {
            session.getAttribute("loggedIn").equals(true)){
             
             String user = request.getParameter("user");
-            boolean submittedButton = request.getParameter("submit") != null;
             
             int userID;
 
@@ -66,7 +65,7 @@ public class Profilo extends HttpServlet {
                 List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
                 request.setAttribute("groups", groups);
                 
-                if(submittedButton == true)
+                if(request.getParameter("submitted") != null)
                     request.setAttribute("confirmed", true);
 
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);

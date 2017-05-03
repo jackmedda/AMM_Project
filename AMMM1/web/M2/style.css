@@ -141,8 +141,18 @@ body {
     text-align: center;
 }
 
+#profImage img {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+
 .row {
     display: table-row;
+}
+
+#invalidDataWarning, #notLoggedIn {
+    text-align: center;
 }
 
 #Page #divForm label, #formLogin label{

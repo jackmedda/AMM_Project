@@ -20,6 +20,10 @@
             <c:if test="${invalidData == true}">
                 <div id="invalidDataWarning">I dati inseriti non sono corretti</div>
             </c:if>
+                
+            <c:if test="${notLoggedIn == true}">
+                <div id="notLoggedIn">Pagina non accessibile, devi prima fare il login</div>
+            </c:if>
             
             <form action="Login" method="POST">
                 <div class="row">

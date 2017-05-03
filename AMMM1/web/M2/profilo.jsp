@@ -22,21 +22,22 @@
         <div id="Page">
             <jsp:include page="sidebar.jsp"/>
             
-            <div id="profImageBox">
                 <c:choose>
                     <c:when test="${utente.profImagePath == null}">
-                        +
+                        <div id="profImageBox">
+                            +
+                        </div>
                     </c:when>
                     <c:otherwise>
-                        <img alt="Foto Profilo" src="${utente.profImagePath}">
+                        <div id="profImage">
+                            <img alt="Foto Profilo" src="${utente.profImagePath}">
+                        </div>
                     </c:otherwise>
                 </c:choose>
-            </div>
-            
-            <c:set var="confirmed" scope="request"/>
+
             <c:if test="${confirmed == true}">I dati sono stati inseriti correttamente.</c:if>
             
-            <form action="Profilo" method="POST">
+            <form action="Profilo?submitted=true" method="POST">
                 <div id="divForm">
                     <div class="row">
                         <label for="name">Nome</label>
@@ -49,10 +50,10 @@
                                <c:if test="${utente.surname != null}">value="${utente.surname}"</c:if>/>
                     </div>
                     <div class="row">
-                        <label for="name">Url dell'immagine del profilo</label>
+                        <label for="name">Path dell'immagine del profilo</label>
                         <input type="text" name="imgUrl" id="imgUrl"
                                <c:if test="${utente.profImagePath != null}">value="${utente.profImagePath}"
-                               </c:if> />                       
+                               </c:if> />
                     </div>
                     <div class="row">
                         <label for="present" id="label_ta">Frase di presentazione</label>
@@ -64,7 +65,7 @@
                         <label for="date">Data di nascita</label>
                         <input type="date" name="date" id="date" 
                             <c:choose>
-                                <c:when test="${utente.date} != null">value="${utente.date}"></c:when>
+                                <c:when test="${utente.date != null}">value="${utente.date}"</c:when>
                                 <c:otherwise>value="2000-01-01"/></c:otherwise>
                             </c:choose>
                     </div>

@@ -5,8 +5,6 @@
  */
 package nerdbook.classi;
 
-import java.sql.Date;
-
 /**
  *
  * @author Giacomo
@@ -15,7 +13,7 @@ public class User {
     private int id;
     private String name;
     private String surname;
-    private Date date;
+    private String date;
     private String profImagePath;
     private String presentation;
     private String username;
@@ -77,7 +75,7 @@ public class User {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -85,7 +83,7 @@ public class User {
      * @param date the date to set
      */
     public void setDate(String date) {
-        this.date = Date.valueOf(date);
+        this.date = date;
     }
 
     /**

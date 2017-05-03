@@ -41,8 +41,10 @@ public class Bacheca extends HttpServlet {
            session.getAttribute("loggedIn").equals(true)){
             
             String user = request.getParameter("user");
+            String group = request.getParameter("group");
             
             int userID;
+            int groupID;
 
             if(user != null){
                 userID = Integer.parseInt(user);
@@ -52,9 +54,38 @@ public class Bacheca extends HttpServlet {
                 userID = loggedUserID;
             }
             
+            if(group != null){
+                groupID = Integer.parseInt(group);
+            }
+            else {
+                groupID = -1;
+            }
+            
             User utente = UserFactory.getInstance().getUserById(userID);
+            Group currGrp = GroupFactory.getInstance().getGroupById(groupID);
+            if(currGrp != null && utente != null){
+                request.setAttribute("currGrp", currGrp);
+
+                List<Post> posts = PostFactory.getInstance().getPostList(currGrp);
+                request.setAttribute("posts", posts);
+                
+                List<User> friends = UserFactory.getInstance().getUserFriends(utente);
+                request.setAttribute("friends", friends);
+                
+                List<Group> groups = GroupFactory.getInstance().getOtherGroups(currGrp);
+                request.setAttribute("groups", groups);
+                
+                request.getRequestDispatcher("bachGroup.jsp").forward(request, response);
+            } 
+            else {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+            
             if(utente != null){
                 request.setAttribute("utente", utente);
+                
+                Integer loggedUserID = (Integer)session.getAttribute("loggedUserID");
+                request.setAttribute("loggedUserID", loggedUserID);
 
                 List<Post> posts = PostFactory.getInstance().getPostList(utente);
                 request.setAttribute("posts", posts);
@@ -64,6 +95,17 @@ public class Bacheca extends HttpServlet {
                 
                 List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
                 request.setAttribute("groups", groups);
+                
+                if(request.getParameter("riepilogo") != null) {
+                    if(Integer.parseInt(request.getParameter("riepilogo")) == 1) {
+                        String message = request.getParameter("formFriendBach");
+                        request.setAttribute("message", message);
+                        request.setAttribute("riep", 1);
+                    }
+                    else if(Integer.parseInt(request.getParameter("riepilogo")) == 2) {
+                        request.setAttribute("riep", 2);
+                    }
+                }
 
                 request.getRequestDispatcher("bacheca.jsp").forward(request, response);
             } 

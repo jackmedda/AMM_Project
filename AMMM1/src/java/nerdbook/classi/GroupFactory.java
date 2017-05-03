@@ -29,55 +29,67 @@ public class GroupFactory {
         
         UserFactory userFactory = UserFactory.getInstance();
 
-        Group groups1 = new Group();
-        groups1.setId(0);
-        groups1.setUser(userFactory.getUserById(0));
-        groups1.setUser(userFactory.getUserById(1));
-        groups1.setUser(userFactory.getUserById(3));
-        groups1.setGroup(new PairGroup("Fuori Corso",""));
+        Group group1 = new Group();
+        group1.setId(0);
+        group1.setUser(userFactory.getUserById(0));
+        group1.setUser(userFactory.getUserById(1));
+        group1.setUser(userFactory.getUserById(3));
+        group1.setGroup(new PairGroup("Fuori Corso",""));
 
-        Group groups2 = new Group();
-        groups2.setId(1);
-        groups2.setUser(userFactory.getUserById(0));
-        groups2.setUser(userFactory.getUserById(1));
-        groups2.setUser(userFactory.getUserById(2));
-        groups2.setGroup(new PairGroup("Mantenuti",""));
+        Group group2 = new Group();
+        group2.setId(1);
+        group2.setUser(userFactory.getUserById(0));
+        group2.setUser(userFactory.getUserById(1));
+        group2.setUser(userFactory.getUserById(2));
+        group2.setGroup(new PairGroup("Mantenuti",""));
 
-        Group groups3 = new Group();
-        groups3.setId(2);
-        groups3.setUser(userFactory.getUserById(1));
-        groups3.setUser(userFactory.getUserById(2));
-        groups3.setUser(userFactory.getUserById(3));
-        groups3.setGroup(new PairGroup("Pignette",""));
+        Group group3 = new Group();
+        group3.setId(2);
+        group3.setUser(userFactory.getUserById(1));
+        group3.setUser(userFactory.getUserById(2));
+        group3.setUser(userFactory.getUserById(3));
+        group3.setGroup(new PairGroup("Pignette",""));
 
-        Group groups4 = new Group();
-        groups4.setId(3);
-        groups4.setUser(userFactory.getUserById(0));
-        groups4.setUser(userFactory.getUserById(2));
-        groups4.setUser(userFactory.getUserById(3));
-        groups4.setGroup(new PairGroup("Gureu",""));
+        Group group4 = new Group();
+        group4.setId(3);
+        group4.setUser(userFactory.getUserById(0));
+        group4.setUser(userFactory.getUserById(2));
+        group4.setUser(userFactory.getUserById(3));
+        group4.setGroup(new PairGroup("Gureu",""));
 
-        listGroups.add(groups1);
-        listGroups.add(groups2);
-        listGroups.add(groups3);
-        listGroups.add(groups4);
+        listGroups.add(group1);
+        listGroups.add(group2);
+        listGroups.add(group3);
+        listGroups.add(group4);
     }
 
-    public Group getGroupsById(int id) {
-        for (Group groups : this.listGroups) {
-            if (groups.getId() == id) {
-                return groups;
+    public Group getGroupById(int id) {
+        for (Group group: this.listGroups) {
+            if (group.getId() == id) {
+                return group;
             }
         }
         return null;
     }
 
-    public List getGroupsList(User usr) {
+    public List<Group> getGroupsList(User usr) {
 
         List<Group> listGroups = new ArrayList<>();
 
         for (Group group : this.listGroups) {
             if (group.getUserList().contains(usr)) {
+                listGroups.add(group);
+            }
+        }
+        return listGroups;
+    }
+    
+    public List<Group> getOtherGroups(Group grp) {
+
+        List<Group> listGroups = new ArrayList<>();
+
+        for (Group group : this.listGroups) {
+            if (!group.equals(grp)) {
                 listGroups.add(group);
             }
         }

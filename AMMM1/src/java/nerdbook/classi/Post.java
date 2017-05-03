@@ -18,7 +18,8 @@ public class Post {
     private int id;
     private User user;
     private Group group;
-    private Object sharer;
+    private String sharer;
+    private String sharerImagePath;
     private String content;
     private Type postType;
     private String postContent;
@@ -64,29 +65,43 @@ public class Post {
     /**
      * @return the group
      */
-    public Group getGroup() {
+    public Group getGroupPost() {
         return group;
     }
 
     /**
      * @param group the group to set
      */
-    public void setGroup(Group group) {
+    public void setGroupPost(Group group) {
         this.group = group;
     }
 
     /**
      * @return the sharer
      */
-    public Object getSharer() {
+    public String getSharer() {
         return sharer;
     }
 
     /**
      * @param sharer the sharer to set
      */
-    public void setSharer(Object sharer) {
+    public void setSharer(String sharer) {
         this.sharer = sharer;
+    }
+
+    /**
+     * @return the sharerImagePath
+     */
+    public String getSharerImagePath() {
+        return sharerImagePath;
+    }
+
+    /**
+     * @param sharerImagePath the sharerImagePath to set
+     */
+    public void setSharerImagePath(String sharerImagePath) {
+        this.sharerImagePath = sharerImagePath;
     }
 
     /**

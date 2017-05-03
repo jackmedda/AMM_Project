@@ -13,14 +13,14 @@
     <h3>Persone</h3>
     <c:forEach var="friend" items="${friends}"> 
         <ul>
-            <li>${friend.name} ${friend.surname}</li>
+            <a href="Bacheca?user=${friend.id}"><li>${friend.name} ${friend.surname}</li></a>
         </ul>
     </c:forEach>
     
     <h3>Gruppi</h3>
     <c:forEach var="grp" items="${groups}"> 
         <ul>
-            <li>${grp.group.name}</li>
+            <a href="Bacheca?group=${grp.id}"><li>${grp.group.name}</li></a>
         </ul>
     </c:forEach>
 </div>
