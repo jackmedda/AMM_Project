@@ -32,7 +32,7 @@
                 <c:forEach var="post" items="${posts}">
                     <div class="Post">
                         <img title="imgProfilo" alt="Foto Profilo"
-                         src="${post.sharerImagePath}" width="100" height="80">
+                         src="${post.sharerImagePathURL}" width="100" height="80">
                         <p>${post.sharer}</p>
                         <div class="contentPost">
                             <p>${post.content}</p>

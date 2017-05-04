@@ -19,7 +19,7 @@ public class Post {
     private User user;
     private Group group;
     private String sharer;
-    private String sharerImagePath;
+    private String sharerImagePathURL;
     private String content;
     private Type postType;
     private String postContent;
@@ -29,6 +29,7 @@ public class Post {
         this.user = null;
         this.group = null;
         this.sharer = null;
+        this.sharerImagePathURL = null;
         this.content = null;
         this.postType = null;
         this.postContent = null;
@@ -91,17 +92,17 @@ public class Post {
     }
 
     /**
-     * @return the sharerImagePath
+     * @return the sharerImagePathURL
      */
-    public String getSharerImagePath() {
-        return sharerImagePath;
+    public String getSharerImagePathURL() {
+        return sharerImagePathURL;
     }
 
     /**
-     * @param sharerImagePath the sharerImagePath to set
+     * @param sharerImagePathURL the sharerImagePathURL to set
      */
-    public void setSharerImagePath(String sharerImagePath) {
-        this.sharerImagePath = sharerImagePath;
+    public void setSharerImagePathURL(String sharerImagePathURL) {
+        this.sharerImagePathURL = sharerImagePathURL;
     }
 
     /**

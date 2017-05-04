@@ -36,7 +36,7 @@ public class PostFactory {
         post1.setUser(userFactory.getUserById(0));
         post1.setGroupPost(groupFactory.getGroupById(-1));
         post1.setSharer(post1.getUser().getName()+ " " + post1.getUser().getSurname());
-        post1.setSharerImagePath(post1.getUser().getProfImagePath());
+        post1.setSharerImagePathURL(post1.getUser().getProfImagePath());
         post1.setPostType(Post.Type.TEXT);
         post1.setPostContent("");
         
@@ -46,7 +46,7 @@ public class PostFactory {
         post2.setUser(userFactory.getUserById(1));
         post2.setGroupPost(groupFactory.getGroupById(-1));
         post2.setSharer(post2.getUser().getName()+ " " + post2.getUser().getSurname());
-        post2.setSharerImagePath(post2.getUser().getProfImagePath());
+        post2.setSharerImagePathURL(post2.getUser().getProfImagePath());
         post2.setPostType(Post.Type.IMAGE);
         post2.setPostContent("images/cookieMonster.gif");
 
@@ -56,7 +56,7 @@ public class PostFactory {
         post3.setUser(userFactory.getUserById(2));
         post3.setGroupPost(groupFactory.getGroupById(-1));
         post3.setSharer(post3.getUser().getName() + " " + post3.getUser().getSurname());
-        post3.setSharerImagePath(post3.getUser().getProfImagePath());
+        post3.setSharerImagePathURL(post3.getUser().getProfImagePath());
         post3.setPostType(Post.Type.TEXT);
         post3.setPostContent("https://www.youtube.com/watch?v=FWHneYtED8I");
 
@@ -66,7 +66,7 @@ public class PostFactory {
         post4.setUser(userFactory.getUserById(-1));
         post4.setGroupPost(groupFactory.getGroupById(2));
         post4.setSharer(post4.getGroupPost().getGroup().getName());
-        post4.setSharerImagePath(post4.getGroupPost().getGroup().getImagePath());
+        post4.setSharerImagePathURL(post4.getGroupPost().getGroup().getImagePath());
         post4.setPostType(Post.Type.TEXT);
         post4.setPostContent("");
 
@@ -76,7 +76,7 @@ public class PostFactory {
         post5.setUser(userFactory.getUserById(3));
         post5.setGroupPost(groupFactory.getGroupById(-1));
         post5.setSharer(post5.getUser().getName() + " " + post5.getUser().getSurname());
-        post5.setSharerImagePath(post5.getUser().getProfImagePath());
+        post5.setSharerImagePathURL(post5.getUser().getProfImagePath());
         post5.setPostType(Post.Type.TEXT);
         post5.setPostContent("");
 

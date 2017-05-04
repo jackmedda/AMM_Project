@@ -61,11 +61,16 @@ public class Bacheca extends HttpServlet {
                 groupID = -1;
             }
             
+            Integer loggedID = (Integer)session.getAttribute("loggedUserID");
+            User loggedUser = UserFactory.getInstance().getUserById(loggedID);
+            
             User utente = UserFactory.getInstance().getUserById(userID);
             Group currGrp = GroupFactory.getInstance().getGroupById(groupID);
             if(currGrp != null && utente != null){
                 request.setAttribute("currGrp", currGrp);
-
+                session.setAttribute("loggedID", loggedID);
+                session.setAttribute("loggedUser", loggedUser);
+                
                 List<Post> posts = PostFactory.getInstance().getPostList(currGrp);
                 request.setAttribute("posts", posts);
                 
@@ -83,9 +88,8 @@ public class Bacheca extends HttpServlet {
             
             if(utente != null){
                 request.setAttribute("utente", utente);
-                
-                Integer loggedUserID = (Integer)session.getAttribute("loggedUserID");
-                request.setAttribute("loggedUserID", loggedUserID);
+                session.setAttribute("loggedID", loggedID);
+                session.setAttribute("loggedUser", loggedUser);
 
                 List<Post> posts = PostFactory.getInstance().getPostList(utente);
                 request.setAttribute("posts", posts);
@@ -96,14 +100,29 @@ public class Bacheca extends HttpServlet {
                 List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
                 request.setAttribute("groups", groups);
                 
+                String message = "";
+                String image = "";
+                
                 if(request.getParameter("riepilogo") != null) {
                     if(Integer.parseInt(request.getParameter("riepilogo")) == 1) {
-                        String message = request.getParameter("formFriendBach");
+                        message = request.getParameter("formFriendBach");
+                        image = request.getParameter("imagePost");
                         request.setAttribute("message", message);
+                        request.setAttribute("image", image);
                         request.setAttribute("riep", 1);
                     }
                     else if(Integer.parseInt(request.getParameter("riepilogo")) == 2) {
                         request.setAttribute("riep", 2);
+                        Post post = new Post();
+                        post.setId(posts.size());
+                        post.setUser(utente);
+                        post.setSharer(UserFactory.getInstance().getUserById(loggedID).getName() 
+                                       + "" + UserFactory.getInstance().getUserById(loggedID).getSurname());
+                        post.setSharerImagePathURL(UserFactory.getInstance().getUserById(loggedID).getProfImagePath());
+                        post.setContent(message);
+                        post.setPostType(Post.Type.TEXT);
+                        post.setPostContent(image);
+                        posts.add(post);
                     }
                 }
 

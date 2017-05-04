@@ -6,13 +6,12 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<header>
-    <div id="LogoutBlock">
-        <p>
-            ${utente.name} ${utente.surname}
-        </p>
-        <p>
-            <a href="Login?logout=1">Logout</a>
-        </p>
-    </div>
-</header>
+
+<div id="LogoutBlock">
+    <p>
+        ${loggedUser.name} ${loggedUser.surname}
+    </p>
+    <p>
+        <a href="Login?logout=1">Logout</a>
+    </p>
+</div>

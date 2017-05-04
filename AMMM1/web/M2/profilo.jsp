@@ -50,7 +50,7 @@
                                <c:if test="${utente.surname != null}">value="${utente.surname}"</c:if>/>
                     </div>
                     <div class="row">
-                        <label for="name">Path dell'immagine del profilo</label>
+                        <label for="name">Path o URL dell'immagine del profilo</label>
                         <input type="text" name="imgUrl" id="imgUrl"
                                <c:if test="${utente.profImagePath != null}">value="${utente.profImagePath}"
                                </c:if> />
@@ -66,8 +66,9 @@
                         <input type="date" name="date" id="date" 
                             <c:choose>
                                 <c:when test="${utente.date != null}">value="${utente.date}"</c:when>
-                                <c:otherwise>value="2000-01-01"/></c:otherwise>
+                                <c:otherwise>value="2000-01-01"</c:otherwise>
                             </c:choose>
+                        />
                     </div>
                     <div class="row">
                         <label for="pswd">Password</label>

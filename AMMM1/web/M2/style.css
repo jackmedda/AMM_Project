@@ -14,10 +14,6 @@ body {
     background-color: #f1fc28;
     z-index: 1;
 }
-
-#Header #Menu div {
-    display: inline-block;
-}
     
 #Header #Menu h1 {
     padding-top: 20px;
@@ -98,6 +94,8 @@ body {
     margin-left: 10px;
 }
 
+#BachContent 
+
 .Post {
     display: block;
     border: 1px dotted white;
@@ -142,9 +140,12 @@ body {
 }
 
 #profImage img {
+    position: relative;
     width: 80px;
     height: 80px;
     text-align: center;
+    top: 10px;
+    left: 10px;
 }
 
 .row {
@@ -155,7 +156,8 @@ body {
     text-align: center;
 }
 
-#Page #divForm label, #formLogin label{
+#Page #divForm label, #formLogin label,
+#Page #BachContent label {
     display: table-cell;
     margin: 8px 10px;
 }
@@ -164,7 +166,9 @@ body {
     font-size: 20px;
 }
 
-#Page #divForm input, #Page #divForm textarea, #formLogin input {
+#Page #divForm input, #Page #divForm textarea, 
+#Page #Bachcontent input, #Page #BachContent textarea, 
+#formLogin input {
     display: table-cell;
     margin: 8px 10px;
 }
@@ -174,7 +178,7 @@ body {
     bottom: 60px;
 }
 
-#Page #divForm textarea {
+#Page #divForm textarea, #Page #Bachcontent textarea {
     resize: vertical;
 }
 
@@ -233,6 +237,10 @@ a:active {
         float: left;
     }
     
+    #Header #Menu div {
+        display: inline-block;
+    }
+    
     #Header #Menu h1 {
         display: inline-block;
         padding-left: 30px;
@@ -273,7 +281,7 @@ a:active {
     }
     
     #BachContent {
-        display: inline-block;
+        display: block;
         margin-left: 40px;
         width: 60%;
     }
@@ -295,7 +303,7 @@ a:active {
         padding: 30px 40px;
     }
     
-    #Page #divForm {
+    #Page #divForm, #Page BachContent {
         position: relative;
         display: inline-table;
         top: 10px;
@@ -348,6 +356,10 @@ a:active {
     #Header #Menu {
         display: inline-block;
         float: left;
+    }
+    
+    #Header #Menu div {
+        display: inline-block;
     }
     
     #Header #Menu h1 {
@@ -418,10 +430,8 @@ a:active {
     }
     
     #Page #divForm {
-        position: relative;
         display: inline-table;
-        top: 140px;
-        left: -100px;
+        margin-left: 20px;
         width: 35%;
     }
     
@@ -438,8 +448,7 @@ a:active {
     #Page form button {
         display: block;
         position: relative;
-        top: 140px;
-        left: 130px;
+        left: 150px;
         width: 36%;
         min-width: 260px;
         margin: 0;
@@ -478,7 +487,11 @@ a:active {
         text-align: center;
     }
     
-    #Header #Menu #UnderLineBackG a:visited {
+    #Header #Menu a:visited, #Header #Menu a:link {
+        color: #f1fc28;
+    }
+    
+    #Header #Menu #UnderLineBackG a:visited, #Header #Menu #UnderLineBackG a:link {
         color: #bc0000;
     }
     
