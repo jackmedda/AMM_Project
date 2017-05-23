@@ -39,6 +39,9 @@
                             <c:if test="${post.postType == IMAGE}">
                                 <img alt="Post con foto" src="${post.postContent}">
                             </c:if>
+                            <c:if test="${post.postType == 'TEXT'}">
+                                <p>${post.postContent}</p>
+                            </c:if>
                         </div>
                     </div>
                 </c:forEach>

@@ -73,10 +73,10 @@ public class Bacheca extends HttpServlet {
                 List<Post> posts = PostFactory.getInstance().getPostList(currGrp);
                 request.setAttribute("posts", posts);
                 
-                List<User> friends = UserFactory.getInstance().getUserFriends(utente);
+                List<User> friends = UserFactory.getInstance().getUserFriends(loggedUser);
                 request.setAttribute("friends", friends);
                 
-                List<Group> groups = GroupFactory.getInstance().getOtherGroups(currGrp, utente);
+                List<Group> groups = GroupFactory.getInstance().getOtherGroups(currGrp, loggedUser);
                 request.setAttribute("groups", groups);
                 
                 if(request.getParameter("riepilogo") != null)
@@ -92,10 +92,10 @@ public class Bacheca extends HttpServlet {
                 List<Post> posts = PostFactory.getInstance().getPostList(utente);
                 request.setAttribute("posts", posts);
                 
-                List<User> friends = UserFactory.getInstance().getUserFriends(utente);
+                List<User> friends = UserFactory.getInstance().getUserFriends(loggedUser);
                 request.setAttribute("friends", friends);
                 
-                List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
+                List<Group> groups = GroupFactory.getInstance().getGroupsList(loggedUser);
                 request.setAttribute("groups", groups);
                 
                 if(request.getParameter("riepilogo") != null)

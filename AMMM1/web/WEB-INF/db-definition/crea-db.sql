@@ -63,7 +63,7 @@ VALUES (default,
         'cookiem',
         '1992-06-29',
         'La vita è un biscotto, ma se piove si scioglie',
-        'img/djanniprofilo.jpg');
+        'images/cookieMonsterProf.jpg');
 
 INSERT INTO users (user_id, name, surname, username, 
                    password, user_date, presentation, profImagePath)
@@ -74,7 +74,7 @@ VALUES (default,
         'cicciog',
         '1990-07-04',
         'Chi è senza peccato scagli la prima pietra, oppure un croissant.',
-        'images\cookieMonsterProf.jpg');
+        'images\ciccioGamerProf.jpg');
 
 INSERT INTO users (user_id, name, surname, username,
                    password, user_date, presentation, profImagePath)
@@ -85,7 +85,7 @@ VALUES (default,
         'pappap',
         '1987-04-23',
         'Pippiamo il mondo per la libertà',
-        'img/user2.jpg');
+        'images/pipponsProf.png');
 
 INSERT INTO users (user_id, name, surname, username,
                    password, user_date, presentation, profImagePath)
@@ -96,7 +96,7 @@ VALUES (default,
         'sbiri',
         '1998-12-03',
         'Aio a tutta birra',
-        'img/user3.jpg');
+        'images/sbirulinaProf.jpg');
 
 INSERT INTO users (user_id, name, surname, username,
                    password, user_date, presentation, profImagePath)
@@ -107,7 +107,7 @@ VALUES (default,
         'pirace',
         '1996-08-22',
         'E si va a portu banda',
-        'img/user3.jpg');
+        'images/piracciaProf.jpg');
 
 --Popolamento tabella PostType
 INSERT INTO posttype (posttype_id, posttype_name)
@@ -142,11 +142,33 @@ VALUES (default,
 INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
                     sharer, content, type, postContent)
 VALUES (default,
+        true,
+        2,
+        null,
+        3,
+        '130 Martin Garrix',
+        2,
+        'images\130SiVola.jpg');
+
+INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
+                    sharer, content, type, postContent)
+VALUES (default,
+        true,
+        2,
+        null,
+        4,
+        'Guarda questo video zio!',
+        1,
+        'https://www.youtube.com/watch?v=FWHneYtED8I&t=4s');
+
+INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
+                    sharer, content, type, postContent)
+VALUES (default,
         false,
         null,
-        2,
-        1,
-        'Tutti al caddozzone a festeggiare',
+        5,
+        5,
+        'La migliore delle vite',
         1,
         null);
 
@@ -155,9 +177,31 @@ INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
 VALUES (default,
         false,
         null,
+        4,
+        3,
+        '',
         2,
+        'images\FiredJob.jpg');
+
+INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
+                    sharer, content, type, postContent)
+VALUES (default,
+        true,
+        4,
+        null,
+        5,
+        'Lo svapo delle tenebre',
+        2,
+        'images\svapo.jpg');
+
+INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
+                    sharer, content, type, postContent)
+VALUES (default,
+        true,
         1,
-        'Tutti al caddozzone a festeggiare',
+        null,
+        5,
+        'Just be sure to notice the collateral beauty!',
         1,
         null);
 
@@ -166,13 +210,13 @@ INSERT INTO posts (post_id, shared_on_user, shared_user, shared_group,
 VALUES (default,
         false,
         null,
+        4,
         2,
+        'Grazie Pippo!!',
         1,
-        'Tutti al caddozzone a festeggiare',
-        1,
-        null);
+        'https://www.youtube.com/watch?v=pLvuEWlwT4Y');
 
---Popolazione gruppi
+--Popolamento gruppi
 INSERT INTO groups (group_id, group_name, group_image)
 VALUES (default,
         'Fuori Corso',
@@ -198,14 +242,41 @@ VALUES (default,
         'Scapestrati',
         '');
 
---Popolazione registrazione gruppi
+--Popolamento registrazione gruppi
 INSERT INTO group_registered (grp_id, usr_id)
 VALUES (1, 1),
        (3, 1),
        (4, 1);
 
---Popolazione amici
+INSERT INTO group_registered (grp_id, usr_id)
+VALUES (2, 2),
+       (4, 2),
+       (5, 2);
+
+INSERT INTO group_registered (grp_id, usr_id)
+VALUES (1, 3),
+       (2, 3),
+       (3, 3),
+       (4, 3);
+
+INSERT INTO group_registered (grp_id, usr_id)
+VALUES (5, 4);
+
+INSERT INTO group_registered (grp_id, usr_id)
+VALUES (1, 5),
+       (4, 5),
+       (5, 5);
+
+--Popolamento amici
 INSERT INTO friends (usr1_id, usr2_id)
 VALUES (1, 2),
        (1, 3),
        (1, 5);
+
+INSERT INTO friends (usr1_id, usr2_id)
+VALUES
+       (2, 3),
+       (2, 4),
+       (3, 4),
+       (3, 5);
+       
