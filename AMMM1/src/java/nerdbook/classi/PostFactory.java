@@ -5,6 +5,11 @@
  */
 package nerdbook.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,101 +27,213 @@ public class PostFactory {
         }
         return singleton;
     }
-
-    private List<Post> listaPost = new ArrayList<>();
-
+    
     private PostFactory() {
-        
-        UserFactory userFactory = UserFactory.getInstance();
-        GroupFactory groupFactory = GroupFactory.getInstance();
-
-        Post post1 = new Post();
-        post1.setContent("Oggi al caddozzone si va a festeggiare!!");
-        post1.setId(0);
-        post1.setUser(userFactory.getUserById(0));
-        post1.setGroupPost(groupFactory.getGroupById(-1));
-        post1.setSharer(post1.getUser().getName()+ " " + post1.getUser().getSurname());
-        post1.setSharerImagePathURL(post1.getUser().getProfImagePath());
-        post1.setPostType(Post.Type.TEXT);
-        post1.setPostContent("");
-        
-        Post post2 = new Post();
-        post2.setContent("Cassato!!!");
-        post2.setId(1);
-        post2.setUser(userFactory.getUserById(1));
-        post2.setGroupPost(groupFactory.getGroupById(-1));
-        post2.setSharer(post2.getUser().getName()+ " " + post2.getUser().getSurname());
-        post2.setSharerImagePathURL(post2.getUser().getProfImagePath());
-        post2.setPostType(Post.Type.IMAGE);
-        post2.setPostContent("images/cookieMonster.gif");
-
-        Post post3 = new Post();
-        post3.setContent("Epico, impossibile non guardarlo!!");
-        post3.setId(2);
-        post3.setUser(userFactory.getUserById(2));
-        post3.setGroupPost(groupFactory.getGroupById(-1));
-        post3.setSharer(post3.getUser().getName() + " " + post3.getUser().getSurname());
-        post3.setSharerImagePathURL(post3.getUser().getProfImagePath());
-        post3.setPostType(Post.Type.TEXT);
-        post3.setPostContent("https://www.youtube.com/watch?v=FWHneYtED8I");
-
-        Post post4 = new Post();
-        post4.setContent("I need ansioliticy");
-        post4.setId(3);
-        post4.setUser(userFactory.getUserById(-1));
-        post4.setGroupPost(groupFactory.getGroupById(2));
-        post4.setSharer(post4.getGroupPost().getGroup().getName());
-        post4.setSharerImagePathURL(post4.getGroupPost().getGroup().getImagePath());
-        post4.setPostType(Post.Type.TEXT);
-        post4.setPostContent("");
-
-        Post post5 = new Post();
-        post5.setContent("");
-        post5.setId(4);
-        post5.setUser(userFactory.getUserById(3));
-        post5.setGroupPost(groupFactory.getGroupById(-1));
-        post5.setSharer(post5.getUser().getName() + " " + post5.getUser().getSurname());
-        post5.setSharerImagePathURL(post5.getUser().getProfImagePath());
-        post5.setPostType(Post.Type.TEXT);
-        post5.setPostContent("");
-
-        listaPost.add(post1);
-        listaPost.add(post2);
-        listaPost.add(post3);
-        listaPost.add(post4);
-        listaPost.add(post5);
     }
 
+    private String connectionString;
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    
+    public String getConnectionString(){
+            return this.connectionString;
+    }
+    
     public Post getPostById(int id) {
-        for (Post post : this.listaPost) {
-            if (post.getId() == id) {
-                return post;
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "select * from posts "
+                    + "where post_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                Post current = new Post();
+                
+                current.setId(res.getInt("post_id"));
+                if(res.getBoolean("shared_on_user")) 
+                    current.setShared(UserFactory.getInstance().getUserById(res.getInt("shared_user")));
+                else
+                    current.setShared(GroupFactory.getInstance().getGroupById(res.getInt("shared_group")));
+                current.setSharer(UserFactory.getInstance().getUserById(res.getInt("sharer")));
+                current.setContent(res.getString("content"));
+                current.setPostType(this.postTypeFromInt(res.getInt("type")));
+                current.setPostContent(res.getString("postContent"));
+
+                stmt.close();
+                conn.close();
+                return current;
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public List getPostList(User usr) {
+    public List<Post> getPostList(User usr) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "select * from posts "
+                    + "join users on shared_user = user_id "
+                    + "where user_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, usr.getId());
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
 
-        List<Post> listaPosts = new ArrayList<>();
-
-        for (Post post : this.listaPost) {
-            if (post.getUser() != null && post.getUser().equals(usr)) {
-                listaPosts.add(post);
+            // ciclo sulle righe restituite
+            if (!res.next()) {
+                stmt.close();
+                conn.close();
             }
+            else {
+                List<Post> postList = new ArrayList<>();
+                do {
+                    Post current = new Post();
+
+                    current.setId(res.getInt("post_id"));
+                    current.setShared(usr);
+                    current.setSharer(UserFactory.getInstance().getUserById(res.getInt("sharer")));
+                    current.setContent(res.getString("content"));
+                    current.setPostType(this.postTypeFromInt(res.getInt("type")));
+                    current.setPostContent(res.getString("postContent"));
+                    
+                    postList.add(current);
+
+                } while(res.next());
+                
+                stmt.close();
+                conn.close();
+                return postList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return listaPosts;
+        return null;
     }
     
-    public List getPostList(Group group) {
+    public List<Post> getPostList(Group group) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "select * from posts "
+                    + "join groups on shared_group = group_id "
+                    + "where group_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, group.getId());
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
 
-        List<Post> listaPosts = new ArrayList<>();
-
-        for (Post post : this.listaPost) {
-            if (post.getGroupPost() != null && post.getGroupPost().equals(group)) {
-                listaPosts.add(post);
+            // ciclo sulle righe restituite
+            if (!res.next()) {
+                stmt.close();
+                conn.close();
             }
+            else {
+                List<Post> postList = new ArrayList<>();
+                do {
+                    Post current = new Post();
+
+                    current.setId(res.getInt("post_id"));
+                    current.setShared(group);
+                    current.setSharer(UserFactory.getInstance().getUserById(res.getInt("sharer")));
+                    current.setContent(res.getString("content"));
+                    current.setPostType(this.postTypeFromInt(res.getInt("type")));
+                    current.setPostContent(res.getString("postContent"));
+                    
+                    postList.add(current);
+
+                } while(res.next());
+                
+                stmt.close();
+                conn.close();
+                return postList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return listaPosts;
+        return null;
+    }
+    
+    public void addNewPost(Post post){
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "insert into posts (post_id, shared_on_user, "
+                    + "shared_user, shared_group, sharer, content, type, postContent) "
+                    + "values (default, ? , ? , ? , ? , ?, ?, ?)";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            if(post.getShared() instanceof User)
+                stmt.setBoolean(1, true);
+            else
+                stmt.setBoolean(1, false);
+            stmt.setInt(2, ((User)post.getShared()).getId());
+            stmt.setInt(3, ((Group)post.getShared()).getId());
+            stmt.setInt(4, post.getSharer().getId());
+            stmt.setString(5, post.getContent());            
+            stmt.setInt(6, this.postTypeFromEnum(post.getPostType()));
+            stmt.setString(7, post.getPostContent());
+            
+            // Esecuzione query
+            stmt.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private Post.Type postTypeFromInt(int type){
+        
+        if(type == 2)
+            return Post.Type.IMAGE;
+        
+        return Post.Type.TEXT;
+    }
+    
+    private int postTypeFromEnum(Post.Type type){
+        //È realizzabile in modo più robusto rispetto all'hardcoding degli indici
+        if(type == Post.Type.TEXT)
+                return 1;
+            else
+                return 2;
     }
 }

@@ -5,15 +5,17 @@
  */
 package nerdbook.classi;
 
+import java.sql.Date;
+
 /**
  *
  * @author Giacomo
  */
-public class User {
+public class User implements Shared {
     private int id;
     private String name;
     private String surname;
-    private String date;
+    private Date date;
     private String profImagePath;
     private String presentation;
     private String username;
@@ -75,14 +77,14 @@ public class User {
     /**
      * @return the date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

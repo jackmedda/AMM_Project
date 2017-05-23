@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Giacomo
  */
-public class Group {
+public class Group implements Shared {
     
     private int id;
     private List<User> userList;
@@ -37,6 +37,13 @@ public class Group {
     public void setId(int id) {
         this.id = id;
     }
+    
+    /**
+     * @param userList the userList to set
+     */
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 
     /**
      * @return the user
@@ -48,8 +55,15 @@ public class Group {
     /**
      * @param user the user to set
      */
-    public void setUser(User user) {
+    public void addUser(User user) {
         this.userList.add(user) ;
+    }
+    
+    /**
+     * @param user the user to set
+     */
+    public void removeUser(User user) {
+        this.userList.remove(user) ;
     }
 
     /**

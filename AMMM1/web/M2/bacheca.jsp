@@ -43,7 +43,7 @@
                         </form>
                     </c:when>
                     <c:otherwise>
-                        <c:if test="${utente.id != loggedID}">
+                        <c:if test="${utente.id != loggedUser.id}">
                             <h2>Scrivi qualcosa sul diario di ${utente.name} ${utente.surname}</h2>
                             <form action="Bacheca?riepilogo=1&user=${utente.id}" method="POST">
                                 <div class="row">
@@ -64,8 +64,8 @@
                 <c:forEach var="post" items="${posts}">
                     <div class="Post">
                         <img title="imgProfilo" alt="Foto Profilo"
-                         src="${post.sharerImagePathURL}" width="100" height="80">
-                        <p>${post.sharer}</p>
+                         src="${post.sharer.profImagePath}" width="100" height="80">
+                        <p>${post.sharer.name} ${post.sharer.surname}</p>
                         <div class="contentPost">
                             <p>${post.content}</p>
                             <c:if test="${post.postType == 'IMAGE'}">

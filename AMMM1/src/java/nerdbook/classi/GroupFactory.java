@@ -5,6 +5,11 @@
  */
 package nerdbook.classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,76 +28,101 @@ public class GroupFactory {
         return singleton;
     }
 
-    private List<Group> listGroups = new ArrayList<>();
+    private String connectionString;
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    public String getConnectionString(){
+            return this.connectionString;
+    }
 
     private GroupFactory() {
-        
-        UserFactory userFactory = UserFactory.getInstance();
-
-        Group group1 = new Group();
-        group1.setId(0);
-        group1.setUser(userFactory.getUserById(0));
-        group1.setUser(userFactory.getUserById(1));
-        group1.setUser(userFactory.getUserById(3));
-        group1.setGroup(new PairGroup("Fuori Corso",""));
-
-        Group group2 = new Group();
-        group2.setId(1);
-        group2.setUser(userFactory.getUserById(0));
-        group2.setUser(userFactory.getUserById(1));
-        group2.setUser(userFactory.getUserById(2));
-        group2.setGroup(new PairGroup("Mantenuti",""));
-
-        Group group3 = new Group();
-        group3.setId(2);
-        group3.setUser(userFactory.getUserById(1));
-        group3.setUser(userFactory.getUserById(2));
-        group3.setUser(userFactory.getUserById(3));
-        group3.setGroup(new PairGroup("Pignette",""));
-
-        Group group4 = new Group();
-        group4.setId(3);
-        group4.setUser(userFactory.getUserById(0));
-        group4.setUser(userFactory.getUserById(2));
-        group4.setUser(userFactory.getUserById(3));
-        group4.setGroup(new PairGroup("Gureu",""));
-
-        listGroups.add(group1);
-        listGroups.add(group2);
-        listGroups.add(group3);
-        listGroups.add(group4);
     }
 
     public Group getGroupById(int id) {
-        for (Group group: this.listGroups) {
-            if (group.getId() == id) {
-                return group;
+        try {
+            Group current = new Group();
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "select * from groups "
+                    + "where group_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                
+                current.setId(res.getInt("group_id"));
+                current.setGroup(new PairGroup(res.getString("group_name"), res.getString("group_image")));
+                
+                stmt.close();
+                conn.close();
+                return current;
             }
+            
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     public List<Group> getGroupsList(User usr) {
-
-        List<Group> listGroups = new ArrayList<>();
-
-        for (Group group : this.listGroups) {
-            if (group.getUserList().contains(usr)) {
-                listGroups.add(group);
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "select * from group_registered "
+                    + "where usr_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, usr.getId());
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+            if(!res.next()) {
+                stmt.close();
+                conn.close();
             }
+            else {
+                List<Group> listGroups = new ArrayList<>();
+                do {
+                    listGroups.add(getGroupById(res.getInt("grp_id")));
+                } while(res.next());
+                
+                stmt.close();
+                conn.close();
+                return listGroups;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return listGroups;
+        return null;
     }
     
-    public List<Group> getOtherGroups(Group grp) {
-
-        List<Group> listGroups = new ArrayList<>();
-
-        for (Group group : this.listGroups) {
-            if (!group.equals(grp)) {
-                listGroups.add(group);
-            }
-        }
-        return listGroups;
+    public List<Group> getOtherGroups(Group currGrp, User loggedUsr) {
+        List<Group> groupsList = getGroupsList(loggedUsr);
+        
+        groupsList.remove(currGrp);
+        
+        return groupsList;
     }
 }

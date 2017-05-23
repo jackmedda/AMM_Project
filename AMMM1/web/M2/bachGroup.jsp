@@ -32,8 +32,8 @@
                 <c:forEach var="post" items="${posts}">
                     <div class="Post">
                         <img title="imgProfilo" alt="Foto Profilo"
-                         src="${post.sharerImagePathURL}" width="100" height="80">
-                        <p>${post.sharer}</p>
+                         src="${post.sharer.profImagePath}" width="100" height="80">
+                        <p>${post.sharer.name} ${post.sharer.surname}</p>
                         <div class="contentPost">
                             <p>${post.content}</p>
                             <c:if test="${post.postType == IMAGE}">

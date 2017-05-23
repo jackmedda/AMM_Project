@@ -16,20 +16,16 @@ public class Post {
     };
 
     private int id;
-    private User user;
-    private Group group;
-    private String sharer;
-    private String sharerImagePathURL;
+    private Shared sha;
+    private User sharer;
     private String content;
     private Type postType;
     private String postContent;
 
     public Post() {
         this.id = -1;
-        this.user = null;
-        this.group = null;
+        this.sha = null;
         this.sharer = null;
-        this.sharerImagePathURL = null;
         this.content = null;
         this.postType = null;
         this.postContent = null;
@@ -50,59 +46,31 @@ public class Post {
     }
 
     /**
-     * @return the user
+     * @return the shahor
      */
-    public User getUser() {
-        return user;
+    public Shared getShared() {
+        return sha;
     }
 
     /**
-     * @param user the user to set
+     * @param sha the shahor to set
      */
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    /**
-     * @return the group
-     */
-    public Group getGroupPost() {
-        return group;
-    }
-
-    /**
-     * @param group the group to set
-     */
-    public void setGroupPost(Group group) {
-        this.group = group;
+    public void setShared(Shared sha) {
+        this.sha = sha;
     }
 
     /**
      * @return the sharer
      */
-    public String getSharer() {
+    public User getSharer() {
         return sharer;
     }
 
     /**
      * @param sharer the sharer to set
      */
-    public void setSharer(String sharer) {
+    public void setSharer(User sharer) {
         this.sharer = sharer;
-    }
-
-    /**
-     * @return the sharerImagePathURL
-     */
-    public String getSharerImagePathURL() {
-        return sharerImagePathURL;
-    }
-
-    /**
-     * @param sharerImagePathURL the sharerImagePathURL to set
-     */
-    public void setSharerImagePathURL(String sharerImagePathURL) {
-        this.sharerImagePathURL = sharerImagePathURL;
     }
 
     /**

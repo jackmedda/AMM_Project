@@ -69,7 +69,6 @@ public class Profilo extends HttpServlet {
                     request.setAttribute("confirmed", true);
 
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
-                return;
             }
             else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -78,7 +77,6 @@ public class Profilo extends HttpServlet {
         else {
             request.setAttribute("notLoggedIn", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;
         }
         
     }

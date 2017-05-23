@@ -6,8 +6,13 @@
 package nerdbook;
 
 import nerdbook.classi.UserFactory;
+import nerdbook.classi.GroupFactory;
+import nerdbook.classi.PostFactory;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Giacomo
  */
+@WebServlet(loadOnStartup = 0)
 public class Login extends HttpServlet {
 
     /**
@@ -28,6 +34,25 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
+    private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb";
+    
+    @Override
+    public void init() {
+        //String dbConnection = "jdbc:derby" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UserFactory.getInstance().setConnectionString(dbConnection);
+        PostFactory.getInstance().setConnectionString(dbConnection);
+        GroupFactory.getInstance().setConnectionString(dbConnection);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -62,7 +87,7 @@ public class Login extends HttpServlet {
                     session.setAttribute("loggedIn", true);
                     session.setAttribute("loggedUserID", loggedUserID);
                     
-                    if(loggedUserID == 10)
+                    if(loggedUserID == -2)
                         request.getRequestDispatcher("Profilo").forward(request, response);
                     else
                         request.getRequestDispatcher("Bacheca").forward(request, response);
