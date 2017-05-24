@@ -94,8 +94,6 @@ body {
     margin-left: 10px;
 }
 
-#BachContent 
-
 .Post {
     display: block;
     border: 1px dotted white;
@@ -167,13 +165,13 @@ body {
 }
 
 #Page #divForm input, #Page #divForm textarea, 
-#Page #Bachcontent input, #Page #BachContent textarea, 
+#Page #newPost input, #Page #newPost textarea, 
 #formLogin input {
     display: table-cell;
     margin: 8px 10px;
 }
 
-#label_ta {
+.label_ta {
     position: relative;
     bottom: 60px;
 }
@@ -204,6 +202,22 @@ body {
     top: 40px;
     font-size: 24px;
     padding: 5px 100px;
+}
+
+#newPost h3 {
+    display: inline;
+}
+
+#formProf button, #newPost button {
+    background-color: grey;
+    color: yellow;
+    border-color: grey;
+}
+
+#deleteButton button {
+    background-color: red;
+    color: yellow;
+    border-color: red;
 }
 
 input[type=text]:focus, input[type=password]:focus,
@@ -281,7 +295,7 @@ a:active {
     }
     
     #BachContent {
-        display: block;
+        display: inline-block;
         margin-left: 40px;
         width: 60%;
     }
@@ -303,7 +317,7 @@ a:active {
         padding: 30px 40px;
     }
     
-    #Page #divForm, #Page BachContent {
+    #Page #divForm {
         position: relative;
         display: inline-table;
         top: 10px;
@@ -311,31 +325,51 @@ a:active {
         width: 100%;
     }
     
-    #Page form {
+    #Page #newPost {
+        display: inline-table;
+        width: 100%;
+    }
+    
+    #Page #formProf {
         display: inline;
         float: left;
         width: 70%;
     }
     
-    #Page #divForm label, #formLogin label{
+    #Page #divForm label, #formLogin label {
         width: 200px;
+    }
+    
+    #Page #newPost label {
+        width: 150px;
     }
     
     #formLogin label {
         padding-left: 117px;
     }
     
-    #Page #divForm input, #Page #divForm textarea, #formLogin input {
-        width: 84%;
+    #Page #divForm input, #Page #divForm textarea, #formLogin input 
+    #Page #newPost input, #Page #newPost textarea {
+        width: 85%;
     }
     
-    #Page form button {
-        width: 89%;
+    #Page #formProf button {
+        width: 90%;
         min-width: 650px;
         position: relative;
         top: 10px;
         left: 30px;
         display: block;
+    }
+    
+    #Page #newPost button {
+        display: block;
+        position: relative;
+        left: 30px;
+        top: 10px;
+        width: 90%;
+        min-width: 550px;
+        margin: 0;
     }
     
     #formLogin {
@@ -345,6 +379,19 @@ a:active {
     
     #formLogin button {
         margin-left: -131px;
+    }
+    
+    #deleteButton {
+        position: relative;
+        display: inline-block;
+        top: 20px;
+        width: 100%;
+    }
+    
+    #deleteButton button {
+        position: relative;
+        left: 210px;
+        width: 63%;
     }
 }
 
@@ -432,7 +479,7 @@ a:active {
     #Page #divForm {
         display: inline-table;
         margin-left: 20px;
-        width: 35%;
+        width: 70%;
     }
     
     #Page #divForm label {
@@ -442,15 +489,25 @@ a:active {
     
     #Page #divForm input, #Page #divForm textarea, #formLogin input {
         width: 100%;
-        min-width: 20px;
+        min-width: 180px;
     }
     
-    #Page form button {
+    #Page #formProf button {
         display: block;
         position: relative;
-        left: 150px;
-        width: 36%;
+        left: 165px;
+        top: 10px;
+        width: 72%;
         min-width: 260px;
+        margin: 0;
+    }
+    
+    #Page #newPost button {
+        display: block;
+        position: relative;
+        left: 20px;
+        width: 73%;
+        min-width: 277px;
         margin: 0;
     }
     
@@ -465,6 +522,18 @@ a:active {
     
     #formLogin button {
         margin-left: -131px;
+    }
+    
+    #deleteButton {
+        position: relative;
+        top: 20px;
+        width: 100%;
+    }
+    
+    #deleteButton button {
+        position: relative;
+        left: 165px;
+        width: 72%;
     }
 }
 
@@ -560,10 +629,15 @@ a:active {
         width: 200px;
     }
     
-    #Page form button {
+    #Page #formProf button, #Page #newPost button, #deleteButton button {
         display: block;
-        width: 415px;
+        width: 92%;
+        min-width: 311px;
         margin-left: 20px;
+    }
+    
+    #Page #newPost button {
+        min-width: 285px;
     }
     
     #formLogin {

@@ -87,10 +87,7 @@ public class Login extends HttpServlet {
                     session.setAttribute("loggedIn", true);
                     session.setAttribute("loggedUserID", loggedUserID);
                     
-                    if(loggedUserID == -2)
-                        request.getRequestDispatcher("Profilo").forward(request, response);
-                    else
-                        request.getRequestDispatcher("Bacheca").forward(request, response);
+                    request.getRequestDispatcher("Bacheca").forward(request, response);
                     return;
                 } 
                 else {

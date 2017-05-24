@@ -35,9 +35,10 @@
                     </c:otherwise>
                 </c:choose>
 
-            <c:if test="${confirmed == true}">I dati sono stati inseriti correttamente.</c:if>
+            <c:if test="${confirmed == true}"><p>I dati sono stati inseriti correttamente.</p></c:if>
+            <c:if test="${passEquals == false}"><p>Le password non coincidono, reinserire i dati.</p></c:if>
             
-            <form action="Profilo?submitted=true" method="POST">
+            <form id="formProf" action="Profilo?submitted=true" method="POST">
                 <div id="divForm">
                     <div class="row">
                         <label for="name">Nome</label>
@@ -56,10 +57,9 @@
                                </c:if> />
                     </div>
                     <div class="row">
-                        <label for="present" id="label_ta">Frase di presentazione</label>
-                        <textarea rows="4" cols="10" name="present" id="present"
-                                  <c:if test="${utente.presentation != null}">value="${utente.presentation}"
-                                  </c:if> ></textarea>
+                        <label for="present" class="label_ta">Frase di presentazione</label>
+                        <textarea rows="4" cols="10" name="present" 
+                            id="present"><c:if test="${utente.presentation != null}">${utente.presentation}</c:if></textarea>
                     </div>
                     <div class="row">
                         <label for="date">Data di nascita</label>
@@ -84,6 +84,9 @@
                     </div>
                 </div>
                 <button type="submit">Aggiorna</button>
+            </form>
+            <form id="deleteButton" action ="Profilo?delete=true"method="POST">
+                <button type="submit">Elimina profilo</button>
             </form>
         </div>
     </body>

@@ -65,8 +65,30 @@ public class Profilo extends HttpServlet {
                 List<Group> groups = GroupFactory.getInstance().getGroupsList(utente);
                 request.setAttribute("groups", groups);
                 
-                if(request.getParameter("submitted") != null)
-                    request.setAttribute("confirmed", true);
+                if(request.getParameter("submitted") != null) {
+                    User usr = new User();
+                    
+                    usr.setName(request.getParameter("name"));
+                    usr.setSurname(request.getParameter("surname"));
+                    usr.setProfImagePath(request.getParameter("imgUrl"));
+                    usr.setPresentation(request.getParameter("present"));
+                    usr.setDate(java.sql.Date.valueOf(request.getParameter("date")));
+                    String pass = request.getParameter("pswd");
+                    String passConf = request.getParameter("verPswd");
+                    if(pass.equals(passConf)) {
+                        request.setAttribute("confirmed", true);
+                        usr.setPassword(pass);
+                        UserFactory.getInstance().updateProfile(usr, userID);
+                        request.setAttribute("utente", usr);
+                    }
+                    else
+                        request.setAttribute("passEquals", false);
+                }
+                
+                if(request.getParameter("delete") != null) {
+                    UserFactory.getInstance().deleteUser(utente);
+                    request.getRequestDispatcher("Login?logout=1").forward(request, response);
+                }
 
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }

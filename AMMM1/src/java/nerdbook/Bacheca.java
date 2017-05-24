@@ -84,8 +84,7 @@ public class Bacheca extends HttpServlet {
                 
                 request.getRequestDispatcher("bachGroup.jsp").forward(request, response);
             }
-
-            if(utente != null){
+            else if(utente != null){
                 request.setAttribute("utente", utente);
                 session.setAttribute("loggedUser", loggedUser);
 
@@ -101,7 +100,7 @@ public class Bacheca extends HttpServlet {
                 if(request.getParameter("riepilogo") != null)
                     newPost(utente, posts, loggedUser, request, response);
                 
-                request.getRequestDispatcher("bacheca.jsp").forward(request, response); 
+                request.getRequestDispatcher("bacheca.jsp").forward(request, response);
             }
             else {
                 request.setAttribute("notLoggedIn", true);
@@ -112,8 +111,8 @@ public class Bacheca extends HttpServlet {
     }   
     private void newPost(Shared sha, List<Post> posts, User loggedUser,
                          HttpServletRequest request, HttpServletResponse response) {
-        String message = "";
-        String image = "";
+        String message = null;
+        String image = null;
         
         switch (Integer.parseInt(request.getParameter("riepilogo"))) {
             case 1:
@@ -125,15 +124,26 @@ public class Bacheca extends HttpServlet {
                 break;
             case 2:
                 request.setAttribute("riep", 2);
+                
+                message = request.getParameter("formFriendBach");
+                image = request.getParameter("imagePost");
+                
                 Post post = new Post();
-                post.setId(posts.size());
-                post.setShared((User)sha);
+                if(sha instanceof User)
+                    post.setShared((User)sha);
+                else
+                    post.setShared((Group)sha);
                 post.setSharer(loggedUser);
                 post.setContent(message);
-                post.setPostType(Post.Type.TEXT);
-                post.setPostContent(image);
+                if(image.isEmpty()) {
+                    post.setPostType(Post.Type.TEXT);
+                }
+                else {
+                    post.setPostType(Post.Type.IMAGE);
+                    post.setPostContent(image);
+                }
                 PostFactory.getInstance().addNewPost(post);
-                posts = PostFactory.getInstance().getPostList((User)sha);
+                posts.add(post);
                 break;
             default:
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);

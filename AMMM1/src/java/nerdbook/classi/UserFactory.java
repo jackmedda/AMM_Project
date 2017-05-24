@@ -147,13 +147,13 @@ public class UserFactory {
                 stmt.close();
             }
             else {
-                String friend;
-                if(res.getInt("usr1_id") == user.getId())
-                    friend = "usr2_id";
-                else
-                    friend = "usr1_id";
-                
                 do {
+                    String friend;
+                    if(res.getInt("usr1_id") == user.getId())
+                        friend = "usr2_id";
+                    else
+                        friend = "usr1_id";
+
                     friends.add(getUserById(res.getInt(friend)));
                 } while (res.next());
                 
@@ -167,5 +167,58 @@ public class UserFactory {
         }
         
         return null;
+    }
+    
+    public void updateProfile(User user, int id) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "update users set name = ?, surname = ?, password = ?, user_date = ?, "
+                    + "presentation = ?, profImagePath = ?"
+                    + "where user_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getSurname());
+            stmt.setString(3, user.getPassword());
+            stmt.setDate(4, user.getDate());
+            stmt.setString(5, user.getPresentation());
+            stmt.setString(6, user.getProfImagePath());
+            stmt.setInt(7, id);
+            
+            // Esecuzione query
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteUser(User usr) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            
+            String query = 
+                      "delete from users "
+                    + "where user_id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, usr.getId());
+            
+            // Esecuzione query
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

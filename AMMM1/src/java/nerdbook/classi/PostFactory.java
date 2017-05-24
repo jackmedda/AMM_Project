@@ -138,6 +138,7 @@ public class PostFactory {
     }
     
     public List<Post> getPostList(Group group) {
+        List<Post> postList = new ArrayList<>();
         try {
             // path, username, password
             Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
@@ -162,7 +163,6 @@ public class PostFactory {
                 conn.close();
             }
             else {
-                List<Post> postList = new ArrayList<>();
                 do {
                     Post current = new Post();
 
@@ -185,7 +185,7 @@ public class PostFactory {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return postList;
     }
     
     public void addNewPost(Post post){
@@ -202,12 +202,18 @@ public class PostFactory {
             PreparedStatement stmt = conn.prepareStatement(query);
             
             // Si associano i valori
-            if(post.getShared() instanceof User)
+            if(post.getShared() instanceof User) {
                 stmt.setBoolean(1, true);
-            else
+                stmt.setInt(2, ((User)post.getShared()).getId());
+                //setInt non può essere posto a null
+                stmt.setString(3, null);
+            }
+            else {
                 stmt.setBoolean(1, false);
-            stmt.setInt(2, ((User)post.getShared()).getId());
-            stmt.setInt(3, ((Group)post.getShared()).getId());
+                //setInt non può essere posto a null
+                stmt.setString(2, null);
+                stmt.setInt(3, ((Group)post.getShared()).getId());
+            }
             stmt.setInt(4, post.getSharer().getId());
             stmt.setString(5, post.getContent());            
             stmt.setInt(6, this.postTypeFromEnum(post.getPostType()));
