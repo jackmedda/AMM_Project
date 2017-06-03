@@ -10,19 +10,27 @@
 
 <div id="Line"></div>
 <div id="Sidebar">
-    <h3>Persone</h3>
-    <c:forEach var="friend" items="${friends}"> 
+    <div id="Filter">
+        <input id="searchFriend" type="text" placeholder="Cerca i tuoi amici..." value=""/>
+        <button id="searchButton">Cerca</button>
+    </div>
+    <h3>Amici</h3>
+    <div id="userFriends">
         <ul>
-            <a href="Bacheca?user=${friend.id}"><li>${friend.name} ${friend.surname}</li></a>
+        <c:forEach var="friend" items="${friends}"> 
+           <a href="Bacheca?user=${friend.id}"><li>${friend.name} ${friend.surname}</li></a>
+        </c:forEach>
         </ul>
-    </c:forEach>
+    </div>
     
     <h3>Gruppi</h3>
-    <c:forEach var="grp" items="${groups}"> 
+    <div id="userGroups">
         <ul>
+        <c:forEach var="grp" items="${groups}"> 
             <a href="Bacheca?group=${grp.id}"><li>${grp.group.name}</li></a>
+        </c:forEach>
         </ul>
-    </c:forEach>
+    </div>
 </div>
               
 

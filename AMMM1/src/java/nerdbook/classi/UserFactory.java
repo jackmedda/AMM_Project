@@ -145,6 +145,7 @@ public class UserFactory {
             // ciclo sulle righe restituite
             if(!res.next()) {
                 stmt.close();
+                conn.close();
             }
             else {
                 do {
@@ -155,6 +156,82 @@ public class UserFactory {
                         friend = "usr1_id";
 
                     friends.add(getUserById(res.getInt(friend)));
+                } while (res.next());
+                
+                stmt.close();
+                conn.close();
+                return friends;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    public List<User> getUserFriends(String subStringUser, int id) {
+        try {
+            List<User> friends = new ArrayList<>();
+            
+            if("".equals(subStringUser)) return null;
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "jackmedda", "jackjack");
+            String query;
+            
+            if(subStringUser.split(" ").length != 1) {
+                query = "select * from users where user_id != ? and (name like ? and surname like ?)";
+            }
+            else {
+                query = "select * from users where user_id != ? and (name like ? or surname like ?)";
+            }
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setInt(1, id);
+            //Si modifica la stringa ricevuta per trasformare la prima lettera in maiuscola
+            //e nel try si in due se è presente sia il nome che il cognome
+            if(subStringUser.split(" ").length != 1) {
+                String[] parts = subStringUser.split("\\s+");
+                parts[0] = parts[0].toLowerCase();
+                parts[1] = parts[1].toLowerCase();
+                parts[0] = parts[0].substring(0, 1).toUpperCase() + parts[0].substring(1);
+                parts[1] = parts[1].substring(0, 1).toUpperCase() + parts[1].substring(1);
+                
+                stmt.setString(2, "%" + parts[0] + "%");
+                stmt.setString(3, "%" + parts[1] + "%");
+            }
+            else {
+                // Si associano i valori
+                subStringUser = subStringUser.toLowerCase();
+                subStringUser = subStringUser.substring(0, 1).toUpperCase() + subStringUser.substring(1);
+                subStringUser = subStringUser.trim();
+                stmt.setString(2, "%" + subStringUser + "%");
+                stmt.setString(3, "%" + subStringUser + "%");
+            }
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if(!res.next()) {
+                stmt.close();
+                conn.close();
+            }
+            else {
+                do {
+                    User current = new User();
+                    current.setId(res.getInt("user_id"));
+                    current.setName(res.getString("name"));
+                    current.setSurname(res.getString("surname"));
+                    current.setUsername(res.getString("username"));
+                    current.setPassword(res.getString("password"));
+                    current.setDate(res.getDate("user_date"));
+                    current.setPresentation(res.getString("presentation"));
+                    current.setProfImagePath(res.getString("profImagePath"));
+                    
+                    friends.add(current);
                 } while (res.next());
                 
                 stmt.close();
@@ -182,6 +259,13 @@ public class UserFactory {
             // Prepared Statement
             PreparedStatement stmt = conn.prepareStatement(query);
             
+            //Si modificano il nome e il cognome per avere solo la prima lettera maiuscola
+            String str = user.getName().toLowerCase();
+            str = str.substring(0, 1).toUpperCase() + str.substring(1);
+            user.setName(str);
+            str = user.getSurname().toLowerCase();
+            str = str.substring(0, 1).toUpperCase() + str.substring(1);
+            user.setSurname(str);
             // Si associano i valori
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getSurname());

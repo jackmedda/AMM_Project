@@ -101,13 +101,13 @@ public class Bacheca extends HttpServlet {
                     newPost(utente, posts, loggedUser, request, response);
                 
                 request.getRequestDispatcher("bacheca.jsp").forward(request, response);
-            }
-            else {
-                request.setAttribute("notLoggedIn", true);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                return;
-            }           
-        }   
+            }          
+        }
+        else {
+            request.setAttribute("notLoggedIn", true);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        } 
     }   
     private void newPost(Shared sha, List<Post> posts, User loggedUser,
                          HttpServletRequest request, HttpServletResponse response) {

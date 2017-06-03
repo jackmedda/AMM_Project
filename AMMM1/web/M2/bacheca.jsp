@@ -10,6 +10,8 @@
         <meta name="author" content="Giacomo Medda">
         <meta name="keywords" content="bacheca nerdbook post image">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/searchFriends.js"></script>
     </head>
 
     <body>

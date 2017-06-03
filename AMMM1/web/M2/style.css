@@ -89,6 +89,10 @@ body {
     margin-bottom: 4px;
 }
 
+#Filter {
+    margin-left: 10px;
+}
+
 #BachContent h2 {
     text-align: left;
     margin-left: 10px;
@@ -208,7 +212,7 @@ body {
     display: inline;
 }
 
-#formProf button, #newPost button {
+#formProf button, #newPost button, #Filter button {
     background-color: grey;
     color: yellow;
     border-color: grey;
@@ -390,7 +394,7 @@ a:active {
     
     #deleteButton button {
         position: relative;
-        left: 210px;
+        left: 300px;
         width: 63%;
     }
 }
