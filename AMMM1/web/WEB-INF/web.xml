@@ -18,15 +18,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Bacheca</servlet-name>
-        <url-pattern>/M2/Bacheca</url-pattern>
+        <url-pattern>/M2/bacheca.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Profilo</servlet-name>
-        <url-pattern>/M2/Profilo</url-pattern>
+        <url-pattern>/M2/profilo.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/M2/Login</url-pattern>
+        <url-pattern>/M2/login.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>

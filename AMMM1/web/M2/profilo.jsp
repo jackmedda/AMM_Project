@@ -9,7 +9,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Giacomo Medda">
         <meta name="keywords" content="nerd profilo nerdbook creare">
-        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/searchFriends.js"></script>
     </head>
 
     <body>
@@ -38,7 +40,7 @@
             <c:if test="${confirmed == true}"><p>I dati sono stati inseriti correttamente.</p></c:if>
             <c:if test="${passEquals == false}"><p>Le password non coincidono, reinserire i dati.</p></c:if>
             
-            <form id="formProf" action="Profilo?submitted=true" method="POST">
+            <form id="formProf" action="profilo.html?submitted=true" method="POST">
                 <div id="divForm">
                     <div class="row">
                         <label for="name">Nome</label>
@@ -85,7 +87,7 @@
                 </div>
                 <button type="submit">Aggiorna</button>
             </form>
-            <form id="deleteButton" action ="Profilo?delete=true"method="POST">
+            <form id="deleteButton" action ="profilo.html?delete=true"method="POST">
                 <button type="submit">Elimina profilo</button>
             </form>
         </div>

@@ -25,7 +25,7 @@
                 <div id="notLoggedIn">Pagina non accessibile, devi prima fare il login</div>
             </c:if>
             
-            <form action="Login" method="POST">
+            <form action="login.html" method="POST">
                 <div class="row">
                     <label for="userName">Username</label>
                     <input type="text" name="username" id="userName"/>

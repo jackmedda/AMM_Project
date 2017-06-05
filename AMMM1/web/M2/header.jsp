@@ -12,6 +12,6 @@
         ${loggedUser.name} ${loggedUser.surname}
     </p>
     <p>
-        <a href="Login?logout=1">Logout</a>
+        <a href="login.html?logout=1">Logout</a>
     </p>
 </div>

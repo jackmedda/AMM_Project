@@ -74,7 +74,7 @@ public class Filter extends HttpServlet {
             }
         }
         else {
-            request.getRequestDispatcher("Login").forward(request, response);
+            request.getRequestDispatcher("login.html").forward(request, response);
         }
     }
 

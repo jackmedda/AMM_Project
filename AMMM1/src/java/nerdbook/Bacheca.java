@@ -106,7 +106,6 @@ public class Bacheca extends HttpServlet {
         else {
             request.setAttribute("notLoggedIn", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;
         } 
     }   
     private void newPost(Shared sha, List<Post> posts, User loggedUser,

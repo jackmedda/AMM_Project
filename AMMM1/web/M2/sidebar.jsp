@@ -18,7 +18,7 @@
     <div id="userFriends">
         <ul>
         <c:forEach var="friend" items="${friends}"> 
-           <a href="Bacheca?user=${friend.id}"><li>${friend.name} ${friend.surname}</li></a>
+           <a href="bacheca.html?user=${friend.id}"><li>${friend.name} ${friend.surname}</li></a>
         </c:forEach>
         </ul>
     </div>
@@ -27,7 +27,7 @@
     <div id="userGroups">
         <ul>
         <c:forEach var="grp" items="${groups}"> 
-            <a href="Bacheca?group=${grp.id}"><li>${grp.group.name}</li></a>
+            <a href="bacheca.html?group=${grp.id}"><li>${grp.group.name}</li></a>
         </c:forEach>
         </ul>
     </div>

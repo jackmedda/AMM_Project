@@ -9,9 +9,9 @@
 <div id="Menu">
     <a href="descrizione.html"><h1 class="NavHeader">Nerdbook</h1></a>
     <div <c:if test="${page=='profilo'}"> id="UnderLineBackG"</c:if>>
-                <a href="Profilo"><h2 <c:if test="${page=='profilo'}"> 
+                <a href="profilo.html"><h2 <c:if test="${page=='profilo'}"> 
                 id="HeaderCurrentPage"</c:if> class="NavHeader">Profilo</h2></a></div>
     <div <c:if test="${page=='bacheca'}">id="UnderLineBackG"</c:if>>
-                <a href="Bacheca"><h2 <c:if test="${page=='bacheca'}"> 
+                <a href="bacheca.html"><h2 <c:if test="${page=='bacheca'}"> 
                 id="HeaderCurrentPage"</c:if> class="NavHeader RBorder">Bacheca</h2></a></div>
 </div>

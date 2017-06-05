@@ -87,7 +87,7 @@ public class Profilo extends HttpServlet {
                 
                 if(request.getParameter("delete") != null) {
                     UserFactory.getInstance().deleteUser(utente);
-                    request.getRequestDispatcher("Login?logout=1").forward(request, response);
+                    request.getRequestDispatcher("login.html?logout=1").forward(request, response);
                 }
 
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);

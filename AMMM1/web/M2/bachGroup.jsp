@@ -33,7 +33,7 @@
                             di ${currGrp.group.name}</c:if></p>
                     <c:choose>
                         <c:when test="${riep == 1}">
-                            <form action="Bacheca?riepilogo=2&group=${currGrp.id}" method="POST">
+                            <form action="bacheca.html?riepilogo=2&group=${currGrp.id}" method="POST">
                                 <div id="divForm">
                                     <div class="row">
                                         <label class="label_ta" for="formFriendBach">Testo Post</label>
@@ -51,7 +51,7 @@
                         </c:when>
                         <c:otherwise>
                             <h2>Scrivi qualcosa sul diario di ${currGrp.group.name}</h2>
-                            <form action="Bacheca?riepilogo=1&group=${currGrp.id}" method="POST">
+                            <form action="bacheca.html?riepilogo=1&group=${currGrp.id}" method="POST">
                                 <div id="divForm">
                                     <div class="row">
                                         <label class="label_ta" for="formFriendBach">Testo Post</label>

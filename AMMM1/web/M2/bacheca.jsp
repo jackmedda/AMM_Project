@@ -30,7 +30,7 @@
                             di ${utente.name} ${utente.surname}</c:if></p>
                     <c:choose>
                         <c:when test="${riep == 1}">
-                            <form action="Bacheca?riepilogo=2&user=${utente.id}" method="POST">
+                            <form action="bacheca.html?riepilogo=2&user=${utente.id}" method="POST">
                                 <div id="divForm">
                                     <div class="row">
                                         <label class="label_ta" for="formFriendBach">Testo Post</label>
@@ -49,7 +49,7 @@
                         <c:otherwise>
                             <c:if test="${utente.id != loggedUser.id}">
                                 <h2>Scrivi qualcosa sul diario di ${utente.name} ${utente.surname}</h2>
-                                <form action="Bacheca?riepilogo=1&user=${utente.id}" method="POST">
+                                <form action="bacheca.html?riepilogo=1&user=${utente.id}" method="POST">
                                     <div id="divForm">
                                         <div class="row">
                                             <label class="label_ta" for="formFriendBach">Testo Post</label>
