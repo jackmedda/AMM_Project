@@ -394,7 +394,7 @@ a:active {
     
     #deleteButton button {
         position: relative;
-        left: 300px;
+        left: 310px;
         width: 63%;
     }
 }
@@ -538,6 +538,10 @@ a:active {
         position: relative;
         left: 165px;
         width: 72%;
+    }
+    
+    #searchFriend {
+        width: 60px;
     }
 }
 

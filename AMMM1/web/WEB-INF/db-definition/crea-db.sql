@@ -90,7 +90,7 @@ VALUES (default,
 INSERT INTO users (user_id, name, surname, username,
                    password, user_date, presentation, profImagePath)
 VALUES (default,
-        'LaLumaca',
+        'Lalumaca',
         'Sbirulina',
         'sbirulo@gmail.com',
         'sbiri',
