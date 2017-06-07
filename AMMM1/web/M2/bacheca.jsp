@@ -26,8 +26,15 @@
 
             <div id="BachContent">
                 <div id="newPost">
-                    <p id="confirmPostFr"><c:if test="${riep == 2}">Il post è stato scritto sulla bacheca 
-                            di ${utente.name} ${utente.surname}</c:if></p>
+                    <p id="confirmPostFr">
+                        <c:if test="${riep == 2}">
+                            <c:if test="${utente.id != loggedUser.id}">Il post è stato scritto sulla bacheca 
+                                di ${utente.name} ${utente.surname}
+                            </c:if>
+                            <c:if test="${utente.id == loggedUser.id}">Il post è stato scritto sulla
+                                tua bacheca
+                            </c:if>
+                        </c:if></p>
                     <c:choose>
                         <c:when test="${riep == 1}">
                             <form action="bacheca.html?riepilogo=2&user=${utente.id}" method="POST">
@@ -41,14 +48,24 @@
                                         <label for="imagePost">Path o Url Immagine</label>
                                         <input type="text" name="imagePost" id="imagePost" value="${image}"/>
                                     </div>
-                                    <p>Vuoi davvero inviare questo post alla bacheca di ${utente.name} ${utente.surname}?</p>
+                                    <c:if test="${utente.id != loggedUser.id}">
+                                        <p>Vuoi davvero inviare questo post alla
+                                            bacheca di ${utente.name} ${utente.surname}?</p>
+                                    </c:if>
+                                    <c:if test="${utente.id == loggedUser.id}">
+                                        <p>Vuoi davvero aggiungere questo post alla tua bacheca?</p>
+                                    </c:if>
                                 </div>
                             <button type="submit">Invia</button>
                             </form>
                         </c:when>
                         <c:otherwise>
                             <c:if test="${utente.id != loggedUser.id}">
-                                <h2>Scrivi qualcosa sul diario di ${utente.name} ${utente.surname}</h2>
+                                <h2>Scrivi qualcosa sulla bacheca di ${utente.name} ${utente.surname}</h2>
+                            </c:if>
+                            <c:if test="${utente.id == loggedUser.id}">
+                                <h2>Scrivi qualcosa sulla tua bacheca</h2>
+                            </c:if>
                                 <form action="bacheca.html?riepilogo=1&user=${utente.id}" method="POST">
                                     <div id="divForm">
                                         <div class="row">
@@ -62,7 +79,7 @@
                                     </div>
                                     <button type="submit">Invia</button>
                                 </form>
-                            </c:if>
+                            
                         </c:otherwise>
                     </c:choose>
                 </div>
