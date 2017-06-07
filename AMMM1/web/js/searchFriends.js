@@ -7,15 +7,10 @@
 function createElement(usr){
     var nameSurname = $("<li>").html(usr.name+" "+usr.surname);
     var link = $("<a>")
-            .attr("href", "Bacheca?user="+usr.id)
-            .html(nameSurname);
+            .attr("href", "bacheca.html?user="+usr.id)
+            .html(nameSurname);    
     
-    var userData = $("<div>")
-            .attr("class","userData")
-            .append(link);
-    
-    
-    return userData;
+    return link;
 }
 
 function stateSuccess(data){

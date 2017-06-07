@@ -41,8 +41,8 @@ public class Login extends HttpServlet {
     
     @Override
     public void init() {
-        String dbConnection = "jdbc:derby" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
-        //String dbConnection = "jdbc:derby://localhost:1527/ammdb";
+        //String dbConnection = "jdbc:derby" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        String dbConnection = "jdbc:derby://localhost:1527/ammdb";
         //Il progetto non funziona se non si utilizza la stringa qui sotto commentata
         //sia nel mio computer che in un altro in cui ho provato e non so come risolvere l'errore
         //java.sql.SQLException: No suitable driver found for jdbc:derbyC:\Users\Giacomo\Desktop\University\2ANNO\AMM\NetBeansProjects\AMM_Project\AMMM1\build\web\WEB-INF/db/ammdb
